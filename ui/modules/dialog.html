@@ -1,0 +1,54 @@
+<section class="dialog-body-{{dialogCtrl.state.class}}">
+    <!-- App header, fixed position, fixed size -->
+    <header id="dialog-header" class="dialog-header-{{dialogCtrl.state.class}} navbar navbar-fixed-top">
+        <div class="dialog-header-inner">
+            <div class="logo">Watson <i class="fa fa-cutlery" aria-hidden="true"></i> Dinner</div>
+        </div>
+    </header>
+    <!-- The area where the conversation is displayed. This is the scrollable div as opposed to the body-->
+    <div class="dialog-scrollable-div" id="scrollable-div" ng-if="dialogCtrl.state.key !== 'intro'" resize>
+        <div class="container dialog-container-{{dialogCtrl.state.class}}">
+            <!--Include the conversation html. Conversation dom will be updated by additions
+                to the 'conversation' array which is stored in the controller-->
+            <div class="dialog-center dialog-center-{{dialogCtrl.state.class}}" ng-include="'modules/dialog-entries.html'"></div>
+        </div>
+    </div>
+    <!--Preview control-->
+    <div id="preview-parent" class="dialog-preview-parent"
+            ng-if="dialogCtrl.getCurrentRecipe() && dialogCtrl.getCurrentRecipe().recipe_name != null">
+        <preview class="dialog-preview" content="dialogCtrl.selectedRecipe"></preview>
+    </div>
+    
+    <!--footer, user entry field -->
+    <footer class="footer-{{dialogCtrl.state.class}}" id="dialog-footer">
+        <div class="container">
+            <form class="form" role="form" ng-submit="dialogCtrl.submit()">
+                <div class="form-group has-controls dialog-form-group-{{dialogCtrl.state.class}}">
+                    <!--At low resolutions we want to show the placeholder text in a label field as the input
+                        control is too narrow to display the full message -->
+                    <div class="dialog-happy-text-{{dialogCtrl.state.class}}">
+                                        {{dialogCtrl.state.introText}}
+
+                    </div>
+                    <table class="dialog-input-table">
+                        <tr>
+                            <td class="dialog-input-col">
+                                <input id="question" class="dialog-form-input form-control"
+                                        type="text"
+                                        placeholder="{{dialogCtrl.state.placeholder}}"
+                                        ng-model="dialogCtrl.question" autocorrect="off"
+                                        autocomplete="off"
+                                        disabled/>
+                            </td>
+                            <td class="dialog-resize-col" id="resize-footer-col">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </footer>
+</section>
+<audio class="audio">
+    Your browser does not support the audio element.
+</audio>

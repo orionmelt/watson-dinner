@@ -1,0 +1,514 @@
+adieu,ClosingTalk
+adios,ClosingTalk
+au revoir,ClosingTalk
+bye,ClosingTalk
+bye bye,ClosingTalk
+bye now,ClosingTalk
+cya,ClosingTalk
+farewell,ClosingTalk
+good bye,ClosingTalk
+good day,ClosingTalk
+good night,ClosingTalk
+goodbye,ClosingTalk
+got to go,ClosingTalk
+gotta go,ClosingTalk
+gotta run,ClosingTalk
+gtg,ClosingTalk
+have to go,ClosingTalk
+have to leave,ClosingTalk
+have to run,ClosingTalk
+i'm leaving,ClosingTalk
+later,ClosingTalk
+laters,ClosingTalk
+logging off,ClosingTalk
+my time is up,ClosingTalk
+need to go,ClosingTalk
+need to leave,ClosingTalk
+need to run,ClosingTalk
+ok bye,ClosingTalk
+out of time,ClosingTalk
+over and out,ClosingTalk
+see ya,ClosingTalk
+see ya later,ClosingTalk
+see ya soon,ClosingTalk
+see you,ClosingTalk
+see you later,ClosingTalk
+see you soon,ClosingTalk
+should be going,ClosingTalk
+should go,ClosingTalk
+signing off,ClosingTalk
+signing out,ClosingTalk
+so long,ClosingTalk
+thank you for your help,ClosingTalk
+thanks watson,ClosingTalk
+then bye,ClosingTalk
+time to go,ClosingTalk
+toodles,ClosingTalk
+ab,GiveName
+agus,GiveName
+ajay,GiveName
+alfonzo,GiveName
+alva,GiveName
+amit,GiveName
+andrew,GiveName
+anil,GiveName
+annett,GiveName
+arnold,GiveName
+ben,GiveName
+beverley,GiveName
+chantel,GiveName
+desiree,GiveName
+diane,GiveName
+dylan,GiveName
+edris,GiveName
+eric,GiveName
+forest,GiveName
+freddy,GiveName
+george,GiveName
+i am prem,GiveName
+i'm also known as heather,GiveName
+i'm called dan,GiveName
+i'm natalie,GiveName
+irene,GiveName
+jeanne,GiveName
+jenniffer,GiveName
+jeracio,GiveName
+jim,GiveName
+joe,GiveName
+jonathon,GiveName
+kakaman,GiveName
+karlyn,GiveName
+kasie,GiveName
+kindra,GiveName
+kyle,GiveName
+lajuana,GiveName
+laurie,GiveName
+leo,GiveName
+lesa,GiveName
+lucinda,GiveName
+marti,GiveName
+marylou,GiveName
+merideth,GiveName
+michael,GiveName
+mj,GiveName
+my name is ashima,GiveName
+my name is jenny,GiveName
+my name is rafah,GiveName
+my name is ralph,GiveName
+my nickname is bob,GiveName
+neil,GiveName
+pat,GiveName
+people call me chuck,GiveName
+richard,GiveName
+rochel,GiveName
+ryan,GiveName
+salvador,GiveName
+sanjay,GiveName
+shan,GiveName
+suranjit,GiveName
+thersa,GiveName
+tisha,GiveName
+vannessa,GiveName
+varada,GiveName
+ward,GiveName
+wassim,GiveName
+watson,GiveName
+yi,GiveName
+you can call me sir,GiveName
+aloha,OpeningTalk
+bad,OpeningTalk
+bonjour,OpeningTalk
+buenos dias,OpeningTalk
+ciao,OpeningTalk
+feeling bit low,OpeningTalk
+g'day,OpeningTalk
+good,OpeningTalk
+good day,OpeningTalk
+good evening,OpeningTalk
+good how are you,OpeningTalk
+good morning,OpeningTalk
+great,OpeningTalk
+greetings,OpeningTalk
+hello,OpeningTalk
+hey,OpeningTalk
+hey there,OpeningTalk
+heya,OpeningTalk
+hi,OpeningTalk
+hi there,OpeningTalk
+hiya,OpeningTalk
+hola,OpeningTalk
+howdy,OpeningTalk
+i am not feeling good,OpeningTalk
+i'm feeling good thanks,OpeningTalk
+its not that good,OpeningTalk
+namaste,OpeningTalk
+yello,OpeningTalk
+yo,OpeningTalk
+any specific recipe?,OtherClass
+asdf,OtherClass
+bad data,OtherClass
+make me a sandwich,OtherClass
+can you get me a cup of coffee,OtherClass
+changed my mind find the fil,OtherClass
+data,OtherClass
+derp,OtherClass
+dfsaf,OtherClass
+dfsafsd,OtherClass
+channa dal,OtherClass
+excellent,OtherClass
+go back,OtherClass
+high of course,OtherClass
+how does hawaiian pizza taste?,OtherClass
+how it is as compare to previous,OtherClass
+how to add to favorites,OtherClass
+i didn't like onions,OtherClass
+i dont like any of these options,OtherClass
+i hate cooking,OtherClass
+i need a new brass,OtherClass
+i want a new mouse,OtherClass
+i'd like to cook pizza.,OtherClass
+is pizza vegetarian?,OtherClass
+is pizza italian or mexican?,OtherClass
+does pizza contain cheese?,OtherClass
+is there any good dish?,OtherClass
+jkfl;sa,OtherClass
+jswjehs,OtherClass
+mexican pizza,OtherClass
+taco bell,OtherClass
+pizza ingredients,OtherClass
+sushi,OtherClass
+sushi how to make?,OtherClass
+more,OtherClass
+not really maybe,OtherClass
+ok so what else do you need to know?,OtherClass
+hawaiian pizza with pineapple,OtherClass
+nut allergy,OtherClass
+tandoori chicken,OtherClass
+sdf,OtherClass
+sdfa,OtherClass
+sdfsafd,OtherClass
+show me more,OtherClass
+show me pizza recipe,OtherClass
+show more,OtherClass
+show more recipes,OtherClass
+show recipes with chicken,OtherClass
+suggest better one,OtherClass
+chicken parmesan,OtherClass
+tell me about bacon cheeseburger?,OtherClass
+french fries,OtherClass
+greek yogurt,OtherClass
+lactose intolerant,OtherClass
+what are the best recipes,OtherClass
+what do you recommend,OtherClass
+what is the cooking time for pizza,OtherClass
+can you tell me about cars,PreSequence
+do you have,PreSequence
+do you know,PreSequence
+do you know about cooking,PreSequence
+do you know about weather,PreSequence
+do you know anything about cooking,PreSequence
+what can you do?,PreSequence
+what can you tell me,PreSequence
+what can you tell me about,PreSequence
+what do you know,PreSequence
+what do you know about,PreSequence
+what do you know about recipes,PreSequence
+what recipes do you know about,PreSequence
+again!,RepairTalk
+already told you,RepairTalk
+are those all of them?,RepairTalk
+change to vegetarian,RepairTalk
+come again,RepairTalk
+help,RepairTalk
+how do you know that?,RepairTalk
+i don't get it,RepairTalk
+i don't understand,RepairTalk
+i mean,RepairTalk
+i meant,RepairTalk
+i'm confused,RepairTalk
+makes no sense,RepairTalk
+no all vegan,RepairTalk
+no chicken,RepairTalk
+no spicy food,RepairTalk
+no i mean,RepairTalk
+no i mean italian dishes,RepairTalk
+no i mean indian,RepairTalk
+no i mean chinese,RepairTalk
+no i mean vegan dishes,RepairTalk
+no i mean to say all steak recipes,RepairTalk
+no i meant,RepairTalk
+no i want,RepairTalk
+no beef,RepairTalk
+nvm,RepairTalk
+say that again,RepairTalk
+show me again,RepairTalk
+start over,RepairTalk
+tell me more,RepairTalk
+tell me more about this,RepairTalk
+that doesn't make sense,RepairTalk
+that makes no sense,RepairTalk
+that's not what i mean,RepairTalk
+that's not what i meant,RepairTalk
+then what do you mean nut allergies?,RepairTalk
+tips,RepairTalk
+what are all the cuisines,RepairTalk
+what are examples of,RepairTalk
+what are they?,RepairTalk
+what are those,RepairTalk
+what are cuisines,RepairTalk
+what did you mean,RepairTalk
+what do you mean,RepairTalk
+what do you mean by,RepairTalk
+what do you mean by,RepairTalk
+what does cuisine mean,RepairTalk
+what does lima beans mean,RepairTalk
+what does that mean,RepairTalk
+what does that stand for,RepairTalk
+what does sautee mean,RepairTalk
+what is an example of,RepairTalk
+what is an example of vegan,RepairTalk
+what is that,RepairTalk
+what were those again,RepairTalk
+what were those again?,RepairTalk
+something i can cook quickly after work today,SearchRecipes
+italian,SearchRecipes
+sushi,SearchRecipes
+indian or italian preferably,SearchRecipes
+italian with chicken,SearchRecipes
+italian,SearchRecipes
+indian,SearchRecipes
+indian with chickpeas,SearchRecipes
+all chinese dishes with tofu,SearchRecipes
+all vegan dishes,SearchRecipes
+without cheese,SearchRecipes
+what can i make with tomatoes?,SearchRecipes
+anything with jalapenos?,SearchRecipes
+what can i cook with potatoes?,SearchRecipes
+how about a vegan dish with zucchini?,SearchRecipes
+show me american dishes,SearchRecipes
+i want to cook some sushi,SearchRecipes
+can you show me all vegetarian dishes?,SearchRecipes
+can you show me gluten free dishes,SearchRecipes
+celery,SearchRecipes
+red onions,SearchRecipes
+spicy,SearchRecipes
+sweet,SearchRecipes
+less oil,SearchRecipes
+filling,SearchRecipes
+light,SearchRecipes
+healthy,SearchRecipes
+italian dishes with pasta,SearchRecipes
+italian dishes with spaghetti,SearchRecipes
+linguini with garlic and oil,SearchRecipes
+chicken tikka masala recipe,SearchRecipes
+not too spicy indian dishes,SearchRecipes
+ethiopian dishes,SearchRecipes
+chicken with rice,SearchRecipes
+"please, nothing with eggs in it",SearchRecipes
+eggs,SearchRecipes
+butter or margarine,SearchRecipes
+salmon,SearchRecipes
+spicy salmon food,SearchRecipes
+something with spinach and lettuce,SearchRecipes
+find an italian recipe,SearchRecipes
+find japanese recipe,SearchRecipes
+find indian recipe,SearchRecipes
+find south indian recipe,SearchRecipes
+dessert,SearchRecipes
+not too sweet desserts,SearchRecipes
+how to bake a cake,SearchRecipes
+good i want to bake cookies,SearchRecipes
+hi how do i make chicken parm?,SearchRecipes
+how do i make ramen noodles?,SearchRecipes
+hmmm... okay maybe italian,SearchRecipes
+mexican,SearchRecipes
+tacos with chicken,SearchRecipes
+how about mexican food with chicken,SearchRecipes
+how about vegetarian mexican dishes,SearchRecipes
+are there any vegan sushi recipes?,SearchRecipes
+how to make sushi?,SearchRecipes
+i am in the mood for something spicy tonight,SearchRecipes
+i want something with lots of eggs,SearchRecipes
+i want pancakes/waffles,SearchRecipes
+how to cook a medium rare steak,SearchRecipes
+i want to cook a steak,SearchRecipes
+i want to make a salad,SearchRecipes
+i want to prepare salad,SearchRecipes
+i want to make a salad with spinach,SearchRecipes
+i want to know how to make pancakes,SearchRecipes
+i want to make a burrito,SearchRecipes
+i wish to eat fried chicken,SearchRecipes
+i would like to go for italian,SearchRecipes
+i would like to know about italian chicken dishes,SearchRecipes
+i would like to know about indian mutton dishes,SearchRecipes
+i would like to cook a cheeseburger,SearchRecipes
+i would like to make italian spinach dish,SearchRecipes
+i would like to cook jambalaya,SearchRecipes
+i would like to cook mexican vegetarian beans,SearchRecipes
+i would like to make pizza,SearchRecipes
+i would like to cook indian vegetarian recipe,SearchRecipes
+i'd like to cook an indian curry dish,SearchRecipes
+i'd like to cook dinner,SearchRecipes
+i'd like to make an italian chicken dinner,SearchRecipes
+i'd like to cook am indian bread dish,SearchRecipes
+i'd like to make a mexican pizza,SearchRecipes
+i'd like to cook something light,SearchRecipes
+i'd like to cook some breakfast food,SearchRecipes
+i'd like to cook something with fish,SearchRecipes
+i'd like to cook an indian dish,SearchRecipes
+id like to cook dinner tonight,SearchRecipes
+im looking for an italian dish,SearchRecipes
+italian,SearchRecipes
+lets go with italian recipes,SearchRecipes
+look for recipes,SearchRecipes
+look up a recipes,SearchRecipes
+look up italian recipes,SearchRecipes
+look up recipes,SearchRecipes
+looking for a recipe,SearchRecipes
+maybe ethiopian?,SearchRecipes
+more indian recipes,SearchRecipes
+recipe,SearchRecipes
+recipes that use butter,SearchRecipes
+asian,SearchRecipes
+chinese,SearchRecipes
+chicken,SearchRecipes
+vegetarian with eggs,SearchRecipes
+spicy indian,SearchRecipes
+french,SearchRecipes
+caribbean recipes,SearchRecipes
+greek,SearchRecipes
+mediterranean,SearchRecipes
+ok so mediteranean and chicken,SearchRecipes
+vietnamese,SearchRecipes
+thai curry,SearchRecipes
+thai curry recipes with rice and chicken,SearchRecipes
+spanish,SearchRecipes
+moroccan,SearchRecipes
+american,SearchRecipes
+south asian,SearchRecipes
+with kidney beans,SearchRecipes
+please show me the italian pasta dishes,SearchRecipes
+japanese,SearchRecipes
+japanese recipes,SearchRecipes
+japanese with chicken,SearchRecipes
+mediterean,SearchRecipes
+italain american,SearchRecipes
+sri lankan,SearchRecipes
+canadian,SearchRecipes
+new orleans,SearchRecipes
+mexican beans recipes,SearchRecipes
+tacos,SearchRecipes
+mexican then,SearchRecipes
+search for a good recipe,SearchRecipes
+search for recipes,SearchRecipes
+search recipes,SearchRecipes
+show me mexican recipes,SearchRecipes
+show me indian,SearchRecipes
+show me italian recipes,SearchRecipes
+show me american,SearchRecipes
+show me vietnamese dishes,SearchRecipes
+show me chinese,SearchRecipes
+show me vietnamese pho recipes,SearchRecipes
+show me chinese recipes,SearchRecipes
+show me vegan indian dishes,SearchRecipes
+show me more,SearchRecipes
+show me recipes,SearchRecipes
+show me other recipe,SearchRecipes
+show me hawaiian,SearchRecipes
+show me chicken indian dishes,SearchRecipes
+show me indian veggie recipes,SearchRecipes
+show me mexican spicy chicken dishes,SearchRecipes
+show me good italian fish dishes.,SearchRecipes
+show me italian tuna recipes,SearchRecipes
+show me quick and easy recipes,SearchRecipes
+show me some easy recipes,SearchRecipes
+show me indian recipes,SearchRecipes
+show me indian lamb,SearchRecipes
+show me american recipes,SearchRecipes
+show me american vegan recipes,SearchRecipes
+show me easy to cook,SearchRecipes
+show me quick recipes,SearchRecipes
+show me easy recipes,SearchRecipes
+show me mexican,SearchRecipes
+something spicy,SearchRecipes
+tell me about italian dishes with chicken,SearchRecipes
+tell me about hamburgers,SearchRecipes
+north indian,SearchRecipes
+indian,SearchRecipes
+carribean,SearchRecipes
+mexican,SearchRecipes
+indian but not too spicy,SearchRecipes
+indian sweet dish with tomatoes,SearchRecipes
+greek salad with cheese,SearchRecipes
+chinese with tofu recipes,SearchRecipes
+chinese recipes,SearchRecipes
+chinese chicken dishes,SearchRecipes
+japanese hibachi recipes,SearchRecipes
+mexican gluten free chicken recipes,SearchRecipes
+caribbean fish recipes,SearchRecipes
+mexican fish,SearchRecipes
+mexican recipes with fish gluten free,SearchRecipes
+chinese recipes tofu spicy,SearchRecipes
+watson what recipes are there?,SearchRecipes
+indian chicken gluten free,SearchRecipes
+what about indian,SearchRecipes
+what about vietnamese recipes?,SearchRecipes
+what vietnamese dishes have chicken,SearchRecipes
+what mexican dish can i cook tonight?,SearchRecipes
+what are all mexican chicken dishes,SearchRecipes
+are you male or female,SmallTalk
+are you married,SmallTalk
+did you catch the game last night,SmallTalk
+did you see the game,SmallTalk
+did you see the xmachina,SmallTalk
+do you have a favorite ingredient,SmallTalk
+do you have a favorite dish?,SmallTalk
+do you know english,SmallTalk
+do you like sports,SmallTalk
+do you speak english,SmallTalk
+don't you understand english,SmallTalk
+get english,SmallTalk
+how about this weather,SmallTalk
+how old are you,SmallTalk
+how's the weather,SmallTalk
+i think siri understand better,SmallTalk
+is it boiling where you are,SmallTalk
+is it freezing where you are,SmallTalk
+is it raining where you are,SmallTalk
+is siri smarter than you?,SmallTalk
+siri is better than you,SmallTalk
+siri is smarter than you,SmallTalk
+some weather huh,SmallTalk
+sorry,SmallTalk
+understand english,SmallTalk
+what are your hobbies,SmallTalk
+what do you do for a living,SmallTalk
+what do you like to do,SmallTalk
+what cuisines are the best,SmallTalk
+what cuisines do you like,SmallTalk
+how to make noodles,SmallTalk
+what goes in saag paneer,SmallTalk
+how do i cook chicken tikka masala,SmallTalk
+how to make a pizza,SmallTalk
+what goes in a pizza,SmallTalk
+what goes in a pizza?,SmallTalk
+how long does it take to bake a cake,SmallTalk
+how does sushi taste,SmallTalk
+what is your favorite cuisine,SmallTalk
+what is your favorite chicken based dish,SmallTalk
+what kind of cuisines do you prefer,SmallTalk
+what kind of food do you like,SmallTalk
+what kind of food do you prefer,SmallTalk
+what do i need to make a pizza,SmallTalk
+what's the ingredients in sushi,SmallTalk
+what's the ingredients in pizza,SmallTalk
+what's the weather like,SmallTalk
+what's your favorite book,SmallTalk
+what's your favorite song,SmallTalk
+what's your favorite team,SmallTalk
+where are you from,SmallTalk
+where do you come from,SmallTalk
+where do you work,SmallTalk
+what's your favorite recipe,SmallTalk
+what's your favorite food,SmallTalk
+who's your favorite chef,SmallTalk

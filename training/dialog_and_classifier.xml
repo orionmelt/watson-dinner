@@ -1,0 +1,3575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <flow>
+        <folder label="Main">
+            <output id="output_2508575">
+                <prompt selectionType="RANDOM">
+                    <item>What can I call you?</item>
+                    <item>What shall I call you?</item>
+                    <item>What's your name?</item>
+                    <item>What do you like to be called?</item>
+                </prompt>
+                <getUserInput id="getUserInput_2508591">
+                    <input isAutoLearnCandidate="true" isRelatedNodeCandidate="true">
+                        <grammar>
+                            <item>Cuisine, Ingredients</item>
+                            <item>$ (CUISINE)={Cuisine_Preference}</item>
+                            <item>$ (INGREDIENTS)={Ingredients_Preference}</item>
+                            <item>$ recipes</item>
+                        </grammar>
+                        <action varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                        <action varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                        <action varName="Topic" operator="SET_TO">recipes</action>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <goto ref="search_2414738"/>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Recipe-related</item>
+                            <item>$ (BY_OTHER_RECIPE)={Topic}</item>
+                            <item>$ dishes</item>
+                            <item>$ food</item>
+                            <item>$ munchies</item>
+                            <item>$ grub</item>
+                            <item>$ breakfast</item>
+                            <item>$ lunch</item>
+                            <item>$ dinner</item>
+                            <item>$ (DINING)={Topic}</item>
+                            <item>$ (WEATHER)={Topic}</item>
+                            <item>$ (TRAFFIC)={Topic}</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <goto ref="search_2414738"/>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Preliminaries</item>
+                            <item>$ what do you know</item>
+                            <item>$ what can you do</item>
+                            <item>$ what can I do</item>
+                            <item>$ what can you tell</item>
+                            <item>$ what kind of</item>
+                            <item>$ what else do you know</item>
+                            <item>$ what do you have information</item>
+                            <item>$ do you know</item>
+                            <item>$ can you</item>
+                            <item>$ do you have information</item>
+                            <item>$ can I</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <goto ref="search_2414738"/>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Why do you need to know?</item>
+                            <item>$ why</item>
+                            <item>$ need to know</item>
+                            <item>$ use it</item>
+                            <item>$ do with it</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Just trying to be friendly.</item>
+                            </prompt>
+                            <goto ref="output_2508831"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>I don't want to give it!</item>
+                            <item>$ don't want</item>
+                            <item>$ no</item>
+                            <item>$ refuse</item>
+                            <item>$ none of your business</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>That's fine.</item>
+                            </prompt>
+                            <goto ref="output_2508831"/>
+                        </output>
+                    </input>
+                    <input id="input_2530402">
+                        <grammar>
+                            <item>My name is</item>
+                            <item>my name is (DYNAMIC_DATA)={User_Name}</item>
+                            <item>mine is (DYNAMIC_DATA)={User_Name}</item>
+                            <item>(DYNAMIC_DATA)={User_Name} </item>
+                            <item>(DYNAMIC_DATA)={User_Name} GiveName</item>
+                        </grammar>
+                        <action varName="User_Name" operator="SET_TO">{User_Name.source}</action>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt>
+                                <item>Hi {User_Name}!</item>
+                            </prompt>
+                            <goto ref="output_2508831"/>
+                        </output>
+                    </input>
+                </getUserInput>
+                <output id="output_2508831">
+                    <prompt selectionType="RANDOM">
+                        <item>I can help you find recipes. Are you in the mood for a specific cuisine?</item>
+                        <item>Let's get cooking! Do you have a particular cuisine in mind?</item>
+                        <item>I find the recipes, you do the cooking. What kind of cuisine do you prefer?</item>
+                    </prompt>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <action varName="Class2" operator="SET_TO_BLANK"/>
+                    <action varName="Class1" operator="SET_TO_BLANK"/>
+                    <goto ref="getUserInput_2443778"/>
+                </output>
+            </output>
+            <output id="output_2414737">
+                <prompt selectionType="RANDOM">
+                    <item>How can I help you?</item>
+                    <item>What can I do for you?</item>
+                </prompt>
+                <getUserInput id="getUserInput_2414745">
+                    <search id="search_2414738" ref="folder_2414695"/>
+                    <search ref="folder_2158864"/>
+                    <search id="search_2414740" ref="folder_2414701"/>
+                    <search ref="folder_2456339"/>
+                    <default id="default_2531544">
+                        <action varName="Previous_Class" operator="SET_TO">{Class1}</action>
+                        <action varName="User_Input" operator="SET_TO_USER_INPUT"/>
+                        <if>
+                            <cond varName="Defaulted_Previous" operator="EQUAL_TO_YES"/>
+                            <goto ref="output_2531608"/>
+                        </if>
+                        <function>
+                            <script name="Calculate">
+                                Name=Calculate
+                                Line={Class1_Confidence}+{Class2_Confidence};
+                            </script>
+                            <output>
+                                <prompt/>
+                                <action varName="Combined_Confidence" operator="SET_TO">{MCT:CUSTOM:Calculate:value}</action>
+                                <goto ref="profileCheck_2531803"/>
+                            </output>
+                        </function>
+                        <if matchType="ANY" id="profileCheck_2531803">
+                            <cond varName="Class1_Confidence" operator="GREATER_THEN">0.90</cond>
+                            <cond varName="Class1_Confidence" operator="EQUALS">0.90</cond>
+                            <output>
+                                <prompt/>
+                                <action varName="Defaulted_Previous" operator="SET_TO_YES"/>
+                                <action varName="User_Input" operator="APPEND">~{Class1}</action>
+                                <goto ref="search_2414738">
+                                    <action varName="User_Input" operator="SET_AS_USER_INPUT"/>
+                                </goto>
+                            </output>
+                        </if>
+                        <if>
+                            <cond varName="Class1_Confidence" operator="LESS_THEN">0.90</cond>
+                            <cond varName="Class1_Confidence" operator="GREATER_THEN">0.75</cond>
+                            <if matchType="ANY">
+                                <cond varName="Class1" operator="EQUALS">SearchRecipes</cond>
+                                <cond varName="Class1" operator="EQUALS">PreSequence</cond>
+                                <cond varName="Class1" operator="EQUALS">OpeningTalk</cond>
+                                <cond varName="Class1" operator="EQUALS">ClosingTalk</cond>
+                                <cond varName="Class1" operator="EQUALS">RepairTalk</cond>
+                                <cond varName="Class1" operator="EQUALS">GiveName</cond>
+                                <cond varName="Class1" operator="EQUALS">SmallTalk</cond>
+                                <output>
+                                    <prompt/>
+                                    <action varName="Class1_Text" operator="SET_TO">{Array_Lookup.{Class1}}</action>
+                                    <output>
+                                    <prompt>
+                                    <item>Do you mean {Class1_Text}?</item>
+                                    </prompt>
+                                    <action
+                                    varName="Defaulted_Previous" operator="SET_TO_YES"/>
+                                    <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt/>
+                                    <action
+                                    varName="User_Input" operator="APPEND">~{Previous_Class}</action>
+                                    <goto ref="search_2414738">
+                                    <action
+                                    varName="User_Input" operator="SET_AS_USER_INPUT"/>
+                                    </goto>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Correct Class</item>
+                                    <item>$ (CLASSES)={Class1}</item>
+                                    </grammar>
+                                    <action varName="Class1" operator="SET_TO">{Class1.value:main}</action>
+                                    <output>
+                                    <prompt/>
+                                    <action
+                                    varName="User_Input" operator="APPEND">~{Class1}</action>
+                                    <goto ref="search_2414738">
+                                    <action
+                                    varName="User_Input" operator="SET_AS_USER_INPUT"/>
+                                    </goto>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt>
+                                    <item>Please rephrase your request.</item>
+                                    </prompt>
+                                    <action
+                                    varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                                    <goto ref="getUserInput_2414745"/>
+                                    </output>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                    </getUserInput>
+                                    </output>
+                                </output>
+                            </if>
+                            <goto ref="output_2531608"/>
+                        </if>
+                        <if matchType="ANY">
+                            <cond varName="Combined_Confidence" operator="GREATER_THEN">0.85</cond>
+                            <cond varName="Combined_Confidence" operator="EQUALS">0.85</cond>
+                            <if matchType="ANY">
+                                <cond varName="Class1" operator="EQUALS">SearchRecipes</cond>
+                                <if matchType="ANY">
+                                    <cond varName="Class2" operator="EQUALS">SearchRecipes</cond>
+                                </if>
+                                <goto ref="output_2531608"/>
+                            </if>
+                            <goto ref="output_2531608"/>
+                        </if>
+                        <output isInsertDNRStatement="true" id="output_2531608">
+                            <prompt selectionType="SEQUENTIAL">
+                                <item>I'm not sure what you mean. Try &lt;i&gt;Look up American recipes.&lt;/i&gt;</item>
+                                <item>I'm afraid I don't understand. I can't recognize dish names at this time.</item>
+                                <item>I'm sorry, I don't understand. Try &lt;i&gt;Indian dish with potatoes&lt;/i&gt;</item>
+                            </prompt>
+                            <goto ref="##special_DNR_GET_USER_INPUT_NODE_ID"/>
+                        </output>
+                    </default>
+                </getUserInput>
+            </output>
+            <getUserInput id="getUserInput_2531765">
+                <input>
+                    <grammar>
+                        <item>Okay</item>
+                        <item>haha</item>
+                        <item>sorry</item>
+                        <item>no problem</item>
+                    </grammar>
+                    <goto ref="output_2449884"/>
+                </input>
+                <goto ref="search_2414738"/>
+            </getUserInput>
+        </folder>
+        <folder label="Library">
+            <folder label="SYSTEM INITIATED SEQUENCES">
+                <output id="output_2449884">
+                    <prompt selectionType="RANDOM">
+                        <item>Is there anything else I can help you with?</item>
+                    </prompt>
+                    <action varName="Page" operator="SET_TO">new</action>
+                    <action varName="Current_Index" operator="SET_TO">0</action>
+                    <action varName="Terminal_Exchange" operator="SET_TO_NO"/>
+                    <action varName="Topic" operator="SET_TO_BLANK"/>
+                    <action varName="Display_Recipe_Details" operator="SET_TO_NO"/>
+                    <action varName="Display_Recipe_Image" operator="SET_TO_NO"/>
+                    <action varName="Selected_Recipe" operator="SET_TO_BLANK"/>
+                    <action varName="Search_Now" operator="SET_TO_NO"/>
+                    <action varName="Ingredients_Preference" operator="SET_TO_BLANK"/>
+                    <action varName="Cuisine_Preference" operator="SET_TO_BLANK"/>
+                    <getUserInput>
+                        <input>
+                            <grammar>
+                                <item>Yes</item>
+                            </grammar>
+                            <goto ref="output_2414737"/>
+                        </input>
+                        <input>
+                            <grammar>
+                                <item>No</item>
+                            </grammar>
+                            <output>
+                                <prompt selectionType="RANDOM">
+                                    <item>Okay.</item>
+                                </prompt>
+                                <goto ref="output_2458386"/>
+                            </output>
+                        </input>
+                        <goto ref="search_2414738"/>
+                    </getUserInput>
+                </output>
+                <output id="output_2458386">
+                    <prompt selectionType="RANDOM">
+                        <item>Did you find what you were looking for, {User_Name}?</item>
+                    </prompt>
+                    <getUserInput>
+                        <input>
+                            <grammar>
+                                <item>Yes</item>
+                            </grammar>
+                            <action varName="Request_Success" operator="SET_TO_YES"/>
+                            <output>
+                                <prompt>
+                                    <item>Great!</item>
+                                </prompt>
+                                <output id="output_2458390">
+                                    <prompt selectionType="RANDOM">
+                                    <item>Goodbye.</item>
+                                    </prompt>
+                                    <action varName="Terminal_Exchange" operator="SET_TO_YES"/>
+                                    <action varName="Greeting_Count" operator="SET_TO">0</action>
+                                    <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>Goodbye</item>
+                                    <item>$ goodbye</item>
+                                    </grammar>
+                                    <output id="output_2510314">
+                                    <prompt selectionType="RANDOM">
+                                    <item>&lt;i&gt;Say anything to continue.&lt;/i&gt;</item>
+                                    </prompt>
+                                    <getUserInput>
+                                    <output id="output_2458394">
+                                    <prompt>
+                                    <item>Welcome back!</item>
+                                    </prompt>
+                                    <goto ref="output_2414737"/>
+                                    </output>
+                                    </getUserInput>
+                                    </output>
+                                    </input>
+                                    <goto ref="output_2414737"/>
+                                    </getUserInput>
+                                </output>
+                            </output>
+                        </input>
+                        <input>
+                            <grammar>
+                                <item>No</item>
+                            </grammar>
+                            <action varName="Request_Success" operator="SET_TO_NO"/>
+                            <output>
+                                <prompt>
+                                    <item>Oh no. Do you want to try again?</item>
+                                </prompt>
+                                <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    </grammar>
+                                    <action
+                                    varName="Terminal_Exchange" operator="SET_TO_NO"/>
+                                    <output>
+                                    <prompt>
+                                    <item>Okay.</item>
+                                    </prompt>
+                                    <goto ref="output_2458390"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt>
+                                    <item>Okay. What can I do for you?</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2414745"/>
+                                    </output>
+                                    </input>
+                                </getUserInput>
+                            </output>
+                        </input>
+                        <goto ref="search_2414738"/>
+                    </getUserInput>
+                </output>
+                <output id="output_2459375">
+                    <prompt selectionType="RANDOM">
+                        <item>This is fun, but wouldn't you like to look up some recipes?</item>
+                    </prompt>
+                    <getUserInput id="getUserInput_2459376">
+                        <input>
+                            <grammar>
+                                <item>Yes</item>
+                            </grammar>
+                            <goto ref="output_2449874"/>
+                        </input>
+                        <input>
+                            <grammar>
+                                <item>No</item>
+                            </grammar>
+                            <action varName="Small_Talk_Count" operator="SET_TO">0</action>
+                            <output>
+                                <prompt selectionType="RANDOM">
+                                    <item>Okay, fine.</item>
+                                </prompt>
+                            </output>
+                        </input>
+                        <input>
+                            <grammar>
+                                <item>Okay</item>
+                            </grammar>
+                            <goto ref="output_2449874"/>
+                        </input>
+                        <goto ref="search_2414738"/>
+                    </getUserInput>
+                </output>
+            </folder>
+            <folder label="PRELIMINARY SEQUENCES" id="folder_2414695">
+                <action varName="Greeting_Count" operator="SET_TO">0</action>
+                <action varName="Small_Talk_Count" operator="SET_TO">0</action>
+                <input isAutoLearnCandidate="true" isRelatedNodeCandidate="true">
+                    <grammar>
+                        <item>PreSequence</item>
+                        <item>what can you do</item>
+                        <item>what do you know</item>
+                        <item>do you know about *</item>
+                        <item>can you look up *</item>
+                        <item>can I look up *</item>
+                        <item>what * cuisines *</item>
+                        <item>which cuisines *</item>
+                        <item>* PreSequence</item>
+                    </grammar>
+                    <action varName="Greeting_Count" operator="SET_TO">0</action>
+                    <action varName="Small_Talk_Count" operator="SET_TO">0</action>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <input>
+                        <grammar>
+                            <item>what cuisines do you know</item>
+                            <item>what * cuisines *</item>
+                            <item>which * cuisines *</item>
+                            <item>what * are the cuisines *</item>
+                        </grammar>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>American, Caribbean, Chinese, French, Greek, Indian, Italian, Japanese, Mediterranean, Mexican, Spanish, Thai, and Vietnamese.</item>
+                            </prompt>
+                            <goto ref="getUserInput_2531765"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>unsupported actions</item>
+                            <item>$ (UNSUPPORTED_ACTIONS)={Topic}</item>
+                        </grammar>
+                        <action varName="Topic" operator="SET_TO">{Topic.value:name}</action>
+                        <input>
+                            <grammar>
+                                <item>what</item>
+                                <item>$ what</item>
+                            </grammar>
+                            <goto ref="output_2531859"/>
+                        </input>
+                        <output>
+                            <prompt>
+                                <item>No.</item>
+                            </prompt>
+                            <output id="output_2531859">
+                                <prompt selectionType="RANDOM">
+                                    <item>I'm afraid I can't {Topic}.</item>
+                                </prompt>
+                                <goto ref="getUserInput_2531765"/>
+                            </output>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>supported actions</item>
+                            <item>$ (SUPPORTED_ACTIONS)={Topic}</item>
+                        </grammar>
+                        <action varName="Topic" operator="SET_TO">{Topic.value:name}</action>
+                        <input>
+                            <grammar>
+                                <item>what</item>
+                                <item>$ what</item>
+                            </grammar>
+                            <goto ref="output_2531866"/>
+                        </input>
+                        <output>
+                            <prompt>
+                                <item>Yes.</item>
+                            </prompt>
+                            <output id="output_2531866">
+                                <prompt selectionType="RANDOM">
+                                    <item>I can {Topic}. </item>
+                                </prompt>
+                                <goto ref="getUserInput_2531765"/>
+                            </output>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>unsupported cuisines</item>
+                            <item>$ (UNSUPPORTED_CUISINES)={Topic}</item>
+                        </grammar>
+                        <action varName="Topic" operator="SET_TO">{Topic.value:main}</action>
+                        <input>
+                            <grammar>
+                                <item>what</item>
+                                <item>$ what</item>
+                            </grammar>
+                            <goto ref="output_2510164"/>
+                        </input>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>No.</item>
+                            </prompt>
+                            <output id="output_2510164">
+                                <prompt selectionType="RANDOM">
+                                    <item>I'm afraid {Topic} isn't a cuisine I know. Please try another one.</item>
+                                </prompt>
+                                <goto ref="getUserInput_2531765"/>
+                            </output>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Cuisines</item>
+                            <item>$ (CUISINE)={Cuisine_Preference}</item>
+                        </grammar>
+                        <action varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                        <goto ref="search_2414740"/>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>out-of-scope topics</item>
+                            <item>$ (DINING)={Topic}</item>
+                            <item>$ (WEATHER)={Topic}</item>
+                            <item>$ (TRAFFIC)={Topic}</item>
+                        </grammar>
+                        <action varName="Topic" operator="SET_TO">{Topic.value:main}</action>
+                        <action varName="Out-of-Scope_Count" operator="INCREMENT_BY">1</action>
+                        <if>
+                            <cond varName="Out-of-Scope_Count" operator="GREATER_THEN">2</cond>
+                            <output>
+                                <prompt selectionType="RANDOM">
+                                    <item>I'm sorry I don't know about that. Can I look up some recipes for you?</item>
+                                </prompt>
+                                <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    </grammar>
+                                    <goto ref="output_2449874"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    </grammar>
+                                    <action
+                                    varName="Out-of-Scope_Count" operator="SET_TO">0</action>
+                                    <output>
+                                    <prompt>
+                                    <item>Okay, fine.</item>
+                                    </prompt>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Okay</item>
+                                    </grammar>
+                                    <goto ref="output_2449874"/>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                </getUserInput>
+                            </output>
+                        </if>
+                        <input>
+                            <grammar>
+                                <item>what</item>
+                                <item>$ what</item>
+                            </grammar>
+                            <goto ref="output_2497989"/>
+                        </input>
+                        <output>
+                            <prompt>
+                                <item>No.</item>
+                            </prompt>
+                            <output id="output_2497989">
+                                <prompt selectionType="RANDOM">
+                                    <item>I'm afraid I don't know much about {Topic}. Just recipes.</item>
+                                </prompt>
+                                <goto ref="getUserInput_2531765"/>
+                            </output>
+                        </output>
+                    </input>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>I can look up recipes by cuisine or ingredients. But I'm afraid I cannot do much else at this time.</item>
+                        </prompt>
+                        <goto ref="getUserInput_2531765"/>
+                    </output>
+                </input>
+            </folder>
+            <folder selectionType="RANDOM" label="ROUTING SEQUENCES" id="folder_2158864">
+                <action varName="Greeting_Count" operator="SET_TO">0</action>
+                <action varName="Small_Talk_Count" operator="SET_TO">0</action>
+                <input>
+                    <grammar>
+                        <item>unsupported cuisines</item>
+                        <item>$ (UNSUPPORTED_CUISINES)={Topic}</item>
+                    </grammar>
+                    <action varName="Topic" operator="SET_TO">{Topic.value:main}</action>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <goto ref="output_2510164"/>
+                </input>
+                <input>
+                    <grammar>
+                        <item>GiveName</item>
+                        <item>* . GiveName</item>
+                    </grammar>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <goto ref="input_2530402"/>
+                </input>
+                <input>
+                    <grammar>
+                        <item>OpeningTalk</item>
+                        <item>* OpeningTalk</item>
+                    </grammar>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <goto ref="profileCheck_2458049"/>
+                </input>
+                <input>
+                    <grammar>
+                        <item>ClosingTalk</item>
+                        <item>* ClosingTalk</item>
+                    </grammar>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <goto ref="output_2458386"/>
+                </input>
+                <input>
+                    <grammar>
+                        <item>SmallTalk</item>
+                        <item>* SmallTalk</item>
+                    </grammar>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>Wouldn't you rather find a recipe?</item>
+                        </prompt>
+                        <goto ref="getUserInput_2459376"/>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>RepairTalk</item>
+                        <item>* RepairTalk</item>
+                    </grammar>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>This must be frustrating.</item>
+                        </prompt>
+                        <goto ref="getUserInput_2459376"/>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>OtherClass</item>
+                        <item>* OtherClass</item>
+                    </grammar>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>Hmmm.</item>
+                        </prompt>
+                        <goto ref="output_2531608"/>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>Misclassified Utterances</item>
+                        <item>thanks</item>
+                    </grammar>
+                    <goto ref="output_2531608"/>
+                </input>
+            </folder>
+            <folder label="BASE SEQUENCES" id="folder_2414701">
+                <action varName="Small_Talk_Count" operator="SET_TO">0</action>
+                <action varName="Greeting_Count" operator="SET_TO">0</action>
+                <input isAutoLearnCandidate="true"
+                    isRelatedNodeCandidate="true"
+                    id="input_2443892">
+                    <grammar>
+                        <item>SearchRecipes</item>
+                        <item>I want to search for recipes</item>
+                        <item>search for recipes</item>
+                        <item>look * recipes</item>
+                        <item>* SearchRecipes</item>
+                    </grammar>
+                    <action varName="Topic" operator="SET_TO">recipes</action>
+                    <action varName="Greeting_Count" operator="SET_TO">0</action>
+                    <action varName="Small_Talk_Count" operator="SET_TO">0</action>
+                    <action varName="Current_Index" operator="SET_TO">0</action>
+                    <action varName="Page" operator="SET_TO">new</action>
+                    <action varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                    <action varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                    <action varName="Node_Class" operator="SET_TO">recipes</action>
+                    <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                    <input id="input_2443775">
+                        <grammar>
+                            <item>Ingredients</item>
+                            <item>$(INGREDIENTS)={Ingredients_Preference}</item>
+                        </grammar>
+                        <action varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                        <action varName="Node_Class" operator="SET_TO">recipes</action>
+                        <goto ref="input_2510382"/>
+                    </input>
+                    <input id="input_2510382">
+                        <grammar>
+                            <item>Cuisine</item>
+                            <item>$ (CUISINE)={Cuisine_Preference}</item>
+                        </grammar>
+                        <action varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                        <goto ref="input_2503399"/>
+                    </input>
+                    <if id="profileCheck_2449894">
+                        <cond varName="Cuisine_Preference" operator="IS_BLANK"/>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Are you in the mood for a specific cuisine?</item>
+                                <item>Do you prefer a certain cuisine?</item>
+                                <item>What kind of cuisine do you like?</item>
+                            </prompt>
+                            <if>
+                                <cond varName="First_Time" operator="EQUAL_TO_YES"/>
+                                <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;American&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Caribbean&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Chinese&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;French&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Greek&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Indian&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Italian&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Japanese&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Mediterranean&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Mexican&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Spanish&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Thai&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Vietnamese&lt;/mct:input&gt;&lt;/b&gt;&lt;br&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;No Preference&lt;/mct:input&gt;&lt;/b&gt;&lt;/mct:link&gt;
+                                    </item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2443778"/>
+                                </output>
+                            </if>
+                            <getUserInput id="getUserInput_2443778">
+                                <input>
+                                    <grammar>
+                                    <item>Unsupported cuisines</item>
+                                    <item>$ (UNSUPPORTED_CUISINES)={Topic}</item>
+                                    </grammar>
+                                    <action varName="Topic" operator="SET_TO">{Topic.value:main}</action>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Sorry, {Topic} isn't a cuisine that I know. Please try another one.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2443778"/>
+                                    </output>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>What cuisines do you know?</item>
+                                    <item>$ what * cuisines do you know</item>
+                                    <item>$ what * cuisines are there</item>
+                                    <item>$ what * cuisines exist</item>
+                                    <item>$ what * cuisines do you have</item>
+                                    </grammar>
+                                    <goto ref="output_2458051"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>What</item>
+                                    <item>$ what are</item>
+                                    <item>$ what is</item>
+                                    <item>$ what do</item>
+                                    <item>$ which</item>
+                                    <item>$ tell me</item>
+                                    </grammar>
+                                    <input>
+                                    <grammar>
+                                    <item>they</item>
+                                    <item>$ they</item>
+                                    <item>$ ones</item>
+                                    <item>$ cuisines</item>
+                                    <item>$ cuisine</item>
+                                    <item>$ cuisine's</item>
+                                    <item>$ choices</item>
+                                    <item>$ choice</item>
+                                    <item>$ options</item>
+                                    <item>$ you have</item>
+                                    <item>$ you know</item>
+                                    <item>$ what else</item>
+                                    <item>$ available</item>
+                                    </grammar>
+                                    <output id="output_2458051">
+                                    <prompt selectionType="RANDOM">
+                                    <item>American, Caribbean, Chinese, French, Greek, Indian, Italian, Japanese, Mediterranean, Mexican, Spanish, Thai, and Vietnamese.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2443778"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>suggest</item>
+                                    <item>$ you suggest</item>
+                                    <item>$ you recommend</item>
+                                    <item>$ your favorite</item>
+                                    <item>$ your favorites</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Well, I don't eat much, but I like Italian food.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2443778"/>
+                                    </output>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>Cuisine and ingredients</item>
+                                    <item>$ (CUISINE)={Cuisine_Preference} (INGREDIENTS)={Ingredients_Preference}</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference} (CUISINE)={Cuisine_Preference}</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                                    <action varName="Search_Now" operator="SET_TO_NO"/>
+                                    <action varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                                    <goto ref="profileCheck_2449895"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                        <item>Cuisine</item>
+                                        <item>$ (CUISINE)={Cuisine_Preference}</item>
+                                    </grammar>
+                                    <action varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                                    <action varName="Search_Now" operator="SET_TO_NO"/>
+                                    <goto ref="profileCheck_2449895"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    <item>$ no</item>
+                                    <item>$ no preference</item>
+                                    <item>$ don't care</item>
+                                    <item>$ don't know</item>
+                                    <item>$ none</item>
+                                    <item>$ all</item>
+                                    <item>$ anything</item>
+                                    <item>$ any</item>
+                                    <item>$ whatever</item>
+                                    <item>$ nothing specific</item>
+                                    <item>$ don't have a preference</item>
+                                    <item>$ I don't know</item>
+                                    </grammar>
+                                    <goto ref="profileCheck_2449895"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference}</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Which cuisine?</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2443778"/>
+                                    </output>
+                                </input>
+                                <goto ref="search_2414738"/>
+                            </getUserInput>
+                        </output>
+                    </if>
+                    <if id="profileCheck_2449895">
+                        <cond varName="Ingredients_Preference" operator="IS_BLANK"/>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Do you prefer a certain primary ingredient?</item>
+                                <item>Do you have a primary ingredient in mind?</item>
+                                <item>Do you have a main ingredient you'd like to use?</item>
+                            </prompt>
+                            <if>
+                                <cond varName="First_Time" operator="EQUAL_TO_YES"/>
+                                <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Chicken&lt;/mct:input&gt;&lt;/b&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Fish&lt;/mct:input&gt;&lt;/b&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Eggs&lt;/mct:input&gt;&lt;/b&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;Broccoli&lt;/mct:input&gt;&lt;/b&gt;&lt;/mct:link&gt;
+                                        &lt;mct:link&gt;&lt;b&gt;&lt;mct:input&gt;No Preference&lt;/mct:input&gt;&lt;/b&gt;&lt;/mct:link&gt;
+                                    </item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2443780"/>
+                                </output>
+                            </if>
+                            <getUserInput id="getUserInput_2443780">
+                                <input>
+                                    <grammar>
+                                    <item>What ingredients do you know?</item>
+                                    <item>$ what * ingredients do you know</item>
+                                    <item>$ what * ingredients are there</item>
+                                    <item>$ what * ingredients exist</item>
+                                    <item>$ what * ingredients do you have</item>
+                                    </grammar>
+                                    <goto ref="output_2458042"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>What</item>
+                                    <item>$ what are</item>
+                                    <item>$ what is</item>
+                                    <item>$ which</item>
+                                    <item>$ tell me</item>
+                                    </grammar>
+                                    <input>
+                                    <grammar>
+                                    <item>ingredients</item>
+                                    <item>$ they</item>
+                                    <item>$ ones</item>
+                                    <item>$ choices</item>
+                                    <item>$ choice</item>
+                                    <item>$ options</item>
+                                    <item>$ things</item>
+                                    <item>$ ingredientss</item>
+                                    <item>$ what else</item>
+                                    <item>$ available</item>
+                                    </grammar>
+                                    <output id="output_2458042">
+                                    <prompt selectionType="RANDOM">
+                                    <item>Vegetables such as broccoli, carrots and peas. Meat and poultry such as beef, chicken and turkey. Rice, eggs, ,etc.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2443780"/>
+                                    </output>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>Ingredients</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference}</item>
+                                    </grammar>
+                                    <action varName="Current_Index" operator="SET_TO">0</action>
+                                    <action varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <action varName="Search_Now" operator="SET_TO_NO"/>
+                                    <goto ref="output_2456875"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    <item>$ don't care</item>
+                                    <item>$ don't know</item>
+                                    <item>$ no preference</item>
+                                    <item>$ no</item>
+                                    <item>$ none</item>
+                                    <item>$ all</item>
+                                    <item>$ any</item>
+                                    <item>$ anything</item>
+                                    <item>$ whatever</item>
+                                    <item>$ nothing specific</item>
+                                    <item>$ don't have a preference</item>
+                                    <item>$ I don't know</item>
+                                    </grammar>
+                                    <action varName="Current_Index" operator="SET_TO">0</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <goto ref="output_2456875"/>
+                                </input>
+                                <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Which ingredients?</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2443780"/>
+                                    </output>
+                                </input>
+                                <goto ref="search_2414738"/>
+                            </getUserInput>
+                        </output>
+                    </if>
+                    <output id="output_2456875">
+                        <prompt selectionType="RANDOM">
+                            <item>Okay.</item>
+                        </prompt>
+                        <output id="output_2456876">
+                            <prompt selectionType="RANDOM">
+                                <item>"{Search_Now:"{Search_Now}", Ingredients:"{Ingredients_Preference}", Cuisine:"{Cuisine_Preference}", Index:"{Current_Index}", Page:"{Page}"}"</item>
+                            </prompt>
+                            <action varName="Last_Results" operator="SET_TO_NO"/>
+                            <action varName="First_Results" operator="SET_TO_NO"/>
+                            <action varName="First_Time" operator="SET_TO_NO"/>
+                            <action varName="Search_Now" operator="SET_TO_YES"/>
+                            <getUserInput>
+                                <input>
+                                    <grammar>
+                                    <item>UPDATE NUM_RECIPES</item>
+                                    </grammar>
+                                    <if>
+                                    <cond varName="Num_Recipes" operator="EQUALS">0</cond>
+                                    <output id="output_2460234">
+                                    <prompt selectionType="RANDOM">
+                                    <item>I'm afraid I found {Num_Recipes} recipes matching {Ingredients_Preference} {Cuisine_Preference}. Try changing your criteria.</item>
+                                    </prompt>
+                                    <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>Okay</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO_BLANK"/>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO_BLANK"/>
+                                    <goto ref="profileCheck_2449907"/>
+                                    </input>
+                                    <goto ref="input_2460509"/>
+                                    </getUserInput>
+                                    </output>
+                                    </if>
+                                    <if>
+                                    <cond
+                                    varName="Ingredients_Preference" operator="HAS_VALUE"/>
+                                    <cond varName="Cuisine_Preference" operator="IS_BLANK"/>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Fine choice, {User_Name}! I found {Num_Recipes} results for {Ingredients_Preference} recipes.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </if>
+                                    <if>
+                                    <cond
+                                    varName="Ingredients_Preference" operator="IS_BLANK"/>
+                                    <cond varName="Cuisine_Preference" operator="HAS_VALUE"/>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Nice choice, {User_Name}! I found {Num_Recipes} results for {Cuisine_Preference} recipes.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </if>
+                                    <if>
+                                    <cond varName="Cuisine_Preference" operator="IS_BLANK"/>
+                                    <cond
+                                    varName="Ingredients_Preference" operator="IS_BLANK"/>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>I found {Num_Recipes} results for ALL recipes.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </if>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Good choices, {User_Name}! I found {Num_Recipes} results for {Cuisine_Preference} {Ingredients_Preference} recipes.</item>
+                                    </prompt>
+                                    <getUserInput id="getUserInput_2456877">
+                                    <input id="input_2456878">
+                                    <grammar>
+                                    <item>Okay</item>
+                                    </grammar>
+                                    <output id="output_2460098">
+                                    <prompt>
+                                    <item>Is there anything else I can help you with?</item>
+                                    </prompt>
+                                    <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>Go back</item>
+                                    <item>$ go back</item>
+                                    <item>$ wait</item>
+                                    <item>$ not done</item>
+                                    <item>$ not finished</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Okay.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO_BLANK"/>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO_BLANK"/>
+                                    <action
+                                    varName="Request_Success" operator="SET_TO_BLANK"/>
+                                    <action
+                                    varName="Terminal_Exchange" operator="SET_TO_BLANK"/>
+                                    <action
+                                    varName="Topic" operator="SET_TO_BLANK"/>
+                                    <goto ref="output_2414737"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt>
+                                    <item>Okay.</item>
+                                    </prompt>
+                                    <goto ref="output_2458386"/>
+                                    </output>
+                                    </input>
+                                    <goto ref="input_2456878"/>
+                                    </getUserInput>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>What do you mean</item>
+                                    <item>$ what do you mean</item>
+                                    <item>$ what does that mean</item>
+                                    <item>$ what did you mean</item>
+                                    <item>$ what were those dishes again</item>
+                                    <item>$ what did you mean</item>
+                                    <item>$ what are those</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>These are the recipes I found. Go ahead and click one!</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Are those</item>
+                                    <item>$ are those</item>
+                                    <item>$ are these</item>
+                                    <item>$ is that</item>
+                                    <item>$ were those</item>
+                                    <item>$ were these</item>
+                                    <item>$ does this</item>
+                                    <item>$ do these</item>
+                                    <item>$ are they</item>
+                                    </grammar>
+                                    <input>
+                                    <grammar>
+                                    <item>What are</item>
+                                    <item>$ what are</item>
+                                    <item>$ what were</item>
+                                    </grammar>
+                                    <action
+                                    varName="Page" operator="SET_TO">repeat</action>
+                                    <goto ref="output_2456876"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>all of them</item>
+                                    <item>$ all</item>
+                                    <item>$ it</item>
+                                    </grammar>
+                                    <goto ref="profileCheck_2459411"/>
+                                    </input>
+                                    <if id="profileCheck_2459411">
+                                    <cond
+                                    varName="Current_Index" operator="LESS_THEN">{Num_Recipes}</cond>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>No. Say &lt;i&gt;show me more&lt;/i&gt; if you want to see more.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </if>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Yes. I'm afraid that's all of them.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>New search</item>
+                                    <item>$ new search</item>
+                                    <item>$ clear choices</item>
+                                    <item>$ reset choices</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Okay.</item>
+                                    </prompt>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO_BLANK"/>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO_BLANK"/>
+                                    <goto ref="profileCheck_2449907"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>single_parameter</item>
+                                    <item>(CUISINE)={Cuisine_Preference}</item>
+                                    <item>(INGREDIENTS)={Ingredients_Preference}</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Is this a new search?</item>
+                                    </prompt>
+                                    <action
+                                    varName="User_Input" operator="SET_TO_USER_INPUT"/>
+                                    <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    <item>$ new search</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt/>
+                                    <action
+                                    varName="User_Input" operator="APPEND">. {Class1}</action>
+                                    <goto ref="input_2443892">
+
+                                    <action
+                                    varName="User_Input" operator="SET_AS_USER_INPUT"/>
+                                    </goto>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    <item>$ same</item>
+                                    </grammar>
+                                    <goto ref="input_2531487">
+                                    <action
+                                    varName="User_Input" operator="SET_AS_USER_INPUT"/>
+                                    </goto>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                    </getUserInput>
+                                    </output>
+                                    </input>
+                                    <input id="input_2460509">
+                                    <grammar>
+                                    <item>Remove cuisine</item>
+                                    <item>$ remove (CUISINE)={Cuisine_Preference}</item>
+                                    <item>$ cancel (CUISINE)={Cuisine_Preference}</item>
+                                    <item>$ remove cuisine</item>
+                                    <item>$ cancel cuisine</item>
+                                    <item>$ any cuisine</item>
+                                    <item>$ all cuisine</item>
+                                    </grammar>
+                                    <action
+                                    varName="Current_Index" operator="SET_TO">0</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO_BLANK"/>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Remove ingredients</item>
+                                    <item>$ remove (INGREDIENTS)={Ingredients_Preference}</item>
+                                    <item>$ cancel (INGREDIENTS)={Ingredients_Preference}</item>
+                                    <item>$ remove ingredient</item>
+                                    <item>$ cancel ingredient</item>
+                                    <item>$ all ingredients</item>
+                                    <item>$ all ingredient</item>
+                                    <item>$ any ingredients</item>
+                                    <item>$ any ingredient</item>
+                                    </grammar>
+                                    <action
+                                    varName="Current_Index" operator="SET_TO">0</action>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO_BLANK"/>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>all recipes</item>
+                                    <item>$ all recipes</item>
+                                    <item>$ all results</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO_BLANK"/>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO_BLANK"/>
+                                    <action
+                                    varName="Current_Index" operator="SET_TO">0</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Cuisine</item>
+                                    <item>$ (CUISINE)={Cuisine_Preference}</item>
+                                    </grammar>
+                                    <action
+                                    varName="Current_Index" operator="SET_TO">0</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                                    <input>
+                                    <grammar>
+                                    <item>ingredient</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference}</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                                    <goto ref="profileCheck_2510320"/>
+                                    </input>
+                                    <if id="profileCheck_2510320">
+                                    <cond
+                                    varName="Cuisine_Preference" operator="EQUALS">Family</cond>
+                                    <goto ref="output_2456875">
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO">G</action>
+                                    </goto>
+                                    </if>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Ingredients</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference}</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                                    <action
+                                    varName="Current_Index" operator="SET_TO">0</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <input>
+                                    <grammar>
+                                    <item>cuisine</item>
+                                    <item>$ (CUISINE)={Cuisine_Preference}</item>
+                                    </grammar>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                                    <goto ref="goTo_2503053"/>
+                                    </input>
+                                    <goto id="goTo_2503053" ref="output_2456875"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Cuisine and Ingredients</item>
+                                    <item>$ (CUISINE)={Cuisine_Preference} (INGREDIENTS)={Ingredients_Preference}</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference} (CUISINE)={Cuisine_Preference}</item>
+                                    <item>$ (CUISINE)={Cuisine_Preference} * (INGREDIENTS)={Ingredients_Preference}</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference} * (CUISINE)={Cuisine_Preference}</item>
+                                    </grammar>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                                    <action
+                                    varName="Current_Index" operator="SET_TO">0</action>
+                                    <input>
+                                    <grammar>
+                                    <item>Cuisine</item>
+                                    <item>$ (CUISINE)={Cuisine_Preference}</item>
+                                    <item>$ cuisine</item>
+                                    </grammar>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO">{Cuisine_Preference.value:main}</action>
+                                    <action
+                                    varName="Current_Index" operator="SET_TO">0</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <input>
+                                    <grammar>
+                                    <item>all</item>
+                                    <item>$ all</item>
+                                    <item>$ just</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO_BLANK"/>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <if>
+                                    <cond
+                                    varName="Cuisine_Preference" operator="EQUALS">Family</cond>
+                                    <goto ref="output_2456875">
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO">G</action>
+                                    </goto>
+                                    </if>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Ingredients</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference}</item>
+                                    </grammar>
+                                    <action
+                                    varName="Ingredients_Preference" operator="SET_TO">{Ingredients_Preference.value:main}</action>
+                                    <action
+                                    varName="Current_Index" operator="SET_TO">0</action>
+                                    <action varName="Page" operator="SET_TO">new</action>
+                                    <input>
+                                    <grammar>
+                                    <item>all</item>
+                                    <item>$ all</item>
+                                    <item>$ any</item>
+                                    </grammar>
+                                    <action
+                                    varName="Cuisine_Preference" operator="SET_TO_BLANK"/>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>I don't like these choices</item>
+                                    <item>$ don't like those</item>
+                                    <item>$ don't like these</item>
+                                    <item>$ don't like any of those</item>
+                                    <item>$ don't like any of these</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>I'm sorry to hear that. Try changing your criteria.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>$ (UNSUPPORTED_CUISINES)={Topic}</item>
+                                    </grammar>
+                                    <action varName="Topic" operator="SET_TO">{Topic.value:main}</action>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>I'm afraid {Topic} isn't a cuisine I know. Please try another one.</item>
+                                    </prompt>
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>again</item>
+                                    <item>$ again</item>
+                                    <item>$ one more time</item>
+                                    </grammar>
+                                    <action varName="Page" operator="SET_TO">repeat</action>
+                                    <goto ref="output_2456875"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>more</item>
+                                    <item>$ more</item>
+                                    <item>$ next</item>
+                                    <item>$ forward</item>
+                                    </grammar>
+                                    <action
+                                    varName="Show_Next" operator="SET_TO_YES"/>
+                                    <action varName="Page" operator="SET_TO">next</action>
+                                    <output>
+                                    <prompt>
+                                    <item>Okay.</item>
+                                    </prompt>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>"{Search_Now:"{Search_Now}", Ingredients:"{Ingredients_Preference}", Cuisine:"{Cuisine_Preference}", Index:"{Current_Index}", Page:"{Page}", Total_Recipes:"{Num_Recipes}", Total_Pages:"{Total_Pages}"}"</item>
+                                    </prompt>
+                                    <action
+                                    varName="First_Results" operator="SET_TO_NO"/>
+                                    <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>UPDATE CURRENT_INDEX</item>
+                                    </grammar>
+                                    <action
+                                    varName="Show_Next" operator="SET_TO_NO"/>
+                                    <action
+                                    varName="Show_Previous" operator="SET_TO_NO"/>
+                                    <if>
+
+                                    <cond
+                                    varName="Num_Recipes" operator="EQUALS">0</cond>
+
+                                    <goto ref="output_2460234"/>
+                                    </if>
+                                    <if>
+
+                                    <cond
+                                    varName="Index_Updated" operator="EQUAL_TO_NO"/>
+                                    <output>
+                                    <prompt>
+                                    <item>Those were the last results</item>
+                                    </prompt>
+
+                                    <goto ref="profileCheck_2503183"/>
+                                    </output>
+                                    </if>
+                                    <if>
+
+                                    <cond
+                                    varName="Current_Index" operator="EQUALS">{Num_Recipes}</cond>
+                                    <output>
+                                    <prompt>
+                                    <item>Here are the last results</item>
+                                    </prompt>
+
+                                    <action
+                                    varName="Last_Results" operator="SET_TO_YES"/>
+
+                                    <goto ref="profileCheck_2503183"/>
+                                    </output>
+                                    </if>
+                                    <output>
+
+                                    <prompt selectionType="RANDOM">
+                                    <item>Here is the next set of results</item>
+                                    </prompt>
+                                    <if id="profileCheck_2503183">
+
+                                    <cond
+                                    varName="Cuisine_Preference" operator="IS_BLANK"/>
+
+                                    <cond
+                                    varName="Ingredients_Preference" operator="HAS_VALUE"/>
+                                    <output>
+                                    <prompt>
+                                    <item>for {Ingredients_Preference} recipes.</item>
+                                    </prompt>
+
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </if>
+                                    <if>
+
+                                    <cond
+                                    varName="Ingredients_Preference" operator="IS_BLANK"/>
+
+                                    <cond
+                                    varName="Cuisine_Preference" operator="HAS_VALUE"/>
+                                    <output>
+                                    <prompt>
+                                    <item>for {Cuisine_Preference} recipes.</item>
+                                    </prompt>
+
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </if>
+                                    <if>
+
+                                    <cond
+                                    varName="Ingredients_Preference" operator="IS_BLANK"/>
+
+                                    <cond
+                                    varName="Cuisine_Preference" operator="IS_BLANK"/>
+                                    <output>
+                                    <prompt>
+                                    <item>for ALL recipes.</item>
+                                    </prompt>
+
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </if>
+                                    <output>
+                                    <prompt>
+                                    <item>for {Cuisine_Preference} {Ingredients_Preference} recipes.</item>
+                                    </prompt>
+
+                                    <goto ref="getUserInput_2456877"/>
+                                    </output>
+                                    </output>
+                                    </input>
+                                    </getUserInput>
+                                    </output>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Go back</item>
+                                    <item>$ back</item>
+                                    <item>$ previous</item>
+                                    <item>$ prior</item>
+                                    </grammar>
+                                    <action varName="Page" operator="SET_TO">previous</action>
+                                    <action
+                                    varName="Show_Previous" operator="SET_TO_YES"/>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Okay.</item>
+                                    </prompt>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>"{Search_Now:"{Search_Now}", Ingredients:"{Ingredients_Preference}", Cuisine:"{Cuisine_Preference}", Index:"{Current_Index}", Page:"{Page}", Total_Recipes:"{Num_Recipes}", Total_Pages:"{Total_Pages}"}"</item>
+                                    </prompt>
+                                    <action
+                                    varName="Last_Results" operator="SET_TO_NO"/>
+                                    <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>UPDATE CURRENT_INDEX</item>
+                                    </grammar>
+                                    <action
+                                    varName="Show_Next" operator="SET_TO_NO"/>
+                                    <action
+                                    varName="Show_Previous" operator="SET_TO_NO"/>
+                                    <if>
+
+                                    <cond
+                                    varName="Num_Recipes" operator="EQUALS">0</cond>
+
+                                    <goto ref="output_2460234"/>
+                                    </if>
+                                    <if>
+
+                                    <cond
+                                    varName="Index_Updated" operator="EQUAL_TO_NO"/>
+                                    <output>
+
+                                    <prompt selectionType="RANDOM">
+                                    <item>Those were the first results</item>
+                                    </prompt>
+
+                                    <action
+                                    varName="Index_Updated" operator="SET_TO_YES"/>
+
+                                    <goto ref="profileCheck_2503183"/>
+                                    </output>
+                                    </if>
+                                    <if matchType="ANY">
+
+                                    <cond
+                                    varName="Current_Index" operator="EQUALS">10</cond>
+
+                                    <cond
+                                    varName="Current_Index" operator="LESS_THEN">10</cond>
+                                    <output>
+
+                                    <prompt selectionType="RANDOM">
+                                    <item>Here are the first results</item>
+                                    </prompt>
+
+                                    <action
+                                    varName="First_Results" operator="SET_TO_YES"/>
+
+                                    <goto ref="profileCheck_2503183"/>
+                                    </output>
+                                    </if>
+                                    <output>
+
+                                    <prompt selectionType="RANDOM">
+                                    <item>Here is the previous set of results</item>
+                                    </prompt>
+
+                                    <goto ref="profileCheck_2503183"/>
+                                    </output>
+                                    </input>
+                                    </getUserInput>
+                                    </output>
+                                    </output>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                    </input>
+                                    </getUserInput>
+                                    </output>
+                                </input>
+                            </getUserInput>
+                        </output>
+                    </output>
+                </input>
+            </folder>
+            <folder selectionType="RANDOM" label="SMALL TALK SEQUENCES" id="folder_2456339">
+                <action varName="Small_Talk_Count" operator="INCREMENT_BY">1</action>
+                <input>
+                    <grammar>
+                        <item>What is your name?</item>
+                        <item>$ your name</item>
+                        <item>$ you called</item>
+                        <item>$ they call you</item>
+                        <item>$ what can I call you</item>
+                    </grammar>
+                    <if>
+                        <cond varName="Small_Talk_Count" operator="GREATER_THEN">2</cond>
+                        <goto ref="output_2459375"/>
+                    </if>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>My name is Watson.</item>
+                        </prompt>
+                        <if>
+                            <cond varName="User_Name" operator="IS_BLANK"/>
+                            <output>
+                                <prompt selectionType="RANDOM">
+                                    <item>What&amp;apos;s your name?</item>
+                                </prompt>
+                                <goto ref="getUserInput_2508591"/>
+                            </output>
+                        </if>
+                        <getUserInput>
+                            <input>
+                                <grammar>
+                                    <item>Okay</item>
+                                    <item>hi</item>
+                                    <item>hi Watson</item>
+                                </grammar>
+                                <goto ref="output_2508575"/>
+                            </input>
+                            <input>
+                                <grammar>
+                                    <item>My name is</item>
+                                    <item>$ my name</item>
+                                    <item>$ call me</item>
+                                    <item>$ I'm called</item>
+                                    <item>$ I am called</item>
+                                    <item>$ known as</item>
+                                    <item>$ mine is</item>
+                                </grammar>
+                                <goto ref="input_2530402"/>
+                            </input>
+                            <goto ref="search_2414738"/>
+                        </getUserInput>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>Do you speak English</item>
+                        <item>$ speak English</item>
+                        <item>$ understand English</item>
+                        <item>$ know English</item>
+                        <item>$ get English</item>
+                    </grammar>
+                    <if>
+                        <cond varName="Small_Talk_Count" operator="GREATER_THEN">2</cond>
+                        <goto ref="output_2459375"/>
+                    </if>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>I'm sorry, English is my second language. My native tongue is Binary. 01110011 01101111 01110010 01110010 01111001</item>
+                        </prompt>
+                        <getUserInput>
+                            <input>
+                                <grammar>
+                                    <item>haha</item>
+                                    <item>okay</item>
+                                </grammar>
+                                <goto ref="output_2449884"/>
+                            </input>
+                            <input>
+                                <grammar>
+                                    <item>01101110 01110000</item>
+                                    <item>01101110 01101111 00100000 01110000 01110010 01101111 01100010 01101100 01100101 01101101</item>
+                                    <item>01101110 01110000</item>
+                                    <item>01100100 01101111 01101110 00100111 01110100 00100000 01110111 01101111 01110010 01110010 01111001</item>
+                                    <item>Disambiguate * 01101110 01110000</item>
+                                    <item>Confirm * 01101110 01110000</item>
+                                    <item>Disambiguate * 01101110 01101111 00100000 01110000 01110010 01101111 01100010 01101100 01100101 01101101</item>
+                                    <item>Confirm * 01101110 01101111 00100000 01110000 01110010 01101111 01100010 01101100 01100101 01101101</item>
+                                    <item>Disambiguate * 01100100 01101111 01101110 00100111 01110100 00100000 01110111 01101111 01110010 01110010 01111001</item>
+                                    <item>Confirm * 01100100 01101111 01101110 00100111 01110100 00100000 01110111 01101111 01110010 01110010 01111001</item>
+                                </grammar>
+                                <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>haha, you're good!</item>
+                                    </prompt>
+                                    <goto ref="output_2449884"/>
+                                </output>
+                            </input>
+                            <goto ref="search_2414738"/>
+                        </getUserInput>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>What is your favorite</item>
+                        <item>$ your favorite</item>
+                        <item>$ favorite</item>
+                        <item>$ you like</item>
+                        <item>$ you prefer</item>
+                    </grammar>
+                    <if>
+                        <cond varName="Small_Talk_Count" operator="GREATER_THEN">2</cond>
+                        <goto ref="output_2459375"/>
+                    </if>
+                    <input>
+                        <grammar>
+                            <item>cuisine</item>
+                            <item>$ cuisine</item>
+                            <item>$ kind of recipe</item>
+                        </grammar>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Well, I don't eat much, but I like Italian food.</item>
+                            </prompt>
+                            <goto ref="getUserInput_2531765"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>recipe</item>
+                            <item>$ recipe</item>
+                        </grammar>
+                        <action varName="Topic" operator="SET_TO">recipe</action>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Oh... I don't eat much, but I hear Indian is good.</item>
+                            </prompt>
+                            <goto ref="getUserInput_2531765"/>
+                        </output>
+                    </input>
+                    <goto ref="default_2531544"/>
+                </input>
+            </folder>
+            <folder selectionType="RANDOM" label="GLOBAL SEQUENCES" id="folder_2442951">
+                <folder label="UI ACTIONS">
+                    <input>
+                        <grammar>
+                            <item>USER CLICKS BOX</item>
+                        </grammar>
+                        <output>
+                            <prompt>
+                                <item>{Selected_Recipe}.</item>
+                            </prompt>
+                            <output>
+                                <prompt selectionType="RANDOM">
+                                    <item>Okay.</item>
+                                    <item>All right.</item>
+                                    <item>Sure thing!</item>
+                                    <item>Coming right up!</item>
+                                </prompt>
+                                <goto ref="getUserInput_2456877"/>
+                            </output>
+                        </output>
+                    </input>
+                </folder>
+                <folder selectionType="RANDOM" label="REPAIR SEQUENCES">
+                    <input>
+                        <grammar>
+                            <item>Help</item>
+                            <item>help</item>
+                            <item>help me</item>
+                            <item>I need help</item>
+                            <item>how does this work</item>
+                            <item>what do I do</item>
+                            <item>what can I do</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Try saying &lt;i&gt;What's in theaters?&lt;/i&gt; or &lt;i&gt;I want to see a comedy&lt;/i&gt;.</item>
+                            </prompt>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Tips</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt>
+                                <item>
+                                    Say &lt;i&gt;Never mind&lt;/i&gt; or &amp; &lt;i&gt;nvm&lt;/i&gt; to start over.
+                                    Say &lt;i&gt;okay&lt;/i&gt; or &amp; &lt;i&gt;thanks&lt;/i&gt; if my response is acceptable.
+                                    Say &lt;i&gt;What does X mean?&lt;/i&gt; for a definition of X.
+                                    Say &lt;i&gt;got to go&lt;/i&gt; or &lt;i&gt;bye&lt;/i&gt; when you're finished.
+                                </item>
+                            </prompt>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Say that again</item>
+                            <item>$ say that again</item>
+                            <item>$ say again</item>
+                            <item>$ what did you say</item>
+                            <item>$ come again</item>
+                            <item>$ say what</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>I said...</item>
+                            </prompt>
+                            <goto ref="##special_DNR_GUI_PREVIOUS_OUTPUT_NODE_ID"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Never mind</item>
+                            <item>$ Nevermind</item>
+                            <item>$ Never mind</item>
+                            <item>$ nvm</item>
+                            <item>$ start over</item>
+                            <item>$ start again</item>
+                            <item>$ restart</item>
+                            <item>$ redo</item>
+                            <item>$ do over</item>
+                            <item>$ start from * beginning</item>
+                            <item>$ clear * selections</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Okay. Whatever you say, {User_Name}!</item>
+                            </prompt>
+                            <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                            <action varName="Class1" operator="SET_TO_BLANK"/>
+                            <action varName="Class2" operator="SET_TO_BLANK"/>
+                            <goto ref="output_2449884"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>I already told you!</item>
+                            <item>$ already told you</item>
+                            <item>$ already said it</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>I'm sorry, please repeat it for me.</item>
+                            </prompt>
+                            <goto ref="getUserInput_2414745"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>I want to speak to a person</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <output>
+                            <prompt>
+                                <item>I'm sorry, I don't have anyone to transfer you to.</item>
+                            </prompt>
+                            <getUserInput>
+                                <input>
+                                    <grammar>
+                                    <item>Okay</item>
+                                    </grammar>
+                                    <goto ref="output_2414737"/>
+                                </input>
+                                <goto ref="search_2414738"/>
+                            </getUserInput>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Insults</item>
+                            <item>$ (VIRTUAL_AGENTS)={Topic} is better than you</item>
+                            <item>$ (VIRTUAL_AGENTS)={Topic} is smarter than you</item>
+                            <item>$ fuck you</item>
+                            <item>$ shut up</item>
+                            <item>$ I hate you</item>
+                            <item>$ you suck</item>
+                            <item>$ you are crap</item>
+                            <item>$ this is crap</item>
+                            <item>$ this is terrible</item>
+                            <item>$ this is the worst</item>
+                            <item>$ you are the worst</item>
+                        </grammar>
+                        <action varName="Topic" operator="SET_TO">{Topic.value:main}</action>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <if>
+                            <cond varName="Small_Talk_Count" operator="GREATER_THEN">2</cond>
+                            <goto ref="output_2459375"/>
+                        </if>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Now you're hurting my feelings.</item>
+                                <item>I'm sorry. I still have a lot to learn.</item>
+                            </prompt>
+                            <goto ref="getUserInput_2531765"/>
+                        </output>
+                    </input>
+                </folder>
+                <folder selectionType="RANDOM" label="OPENING SEQUENCES">
+                    <input>
+                        <grammar>
+                            <item>Hello</item>
+                            <item>Hello again</item>
+                            <item>hi there</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <action varName="Greeting_Count" operator="INCREMENT_BY">1</action>
+                        <if id="profileCheck_2458049">
+                            <cond varName="Terminal_Exchange" operator="EQUAL_TO_YES"/>
+                            <goto ref="output_2458394"/>
+                        </if>
+                        <if>
+                            <cond varName="Greeting_Count" operator="GREATER_THEN">2</cond>
+                            <cond varName="Greeting_Count" operator="GREATER_THEN">2</cond>
+                            <goto ref="output_2459363"/>
+                        </if>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Hello.</item>
+                                <item>Hi.</item>
+                                <item>Hi there.</item>
+                            </prompt>
+                            <output id="output_2459184">
+                                <prompt selectionType="RANDOM">
+                                    <item>How are you today?</item>
+                                    <item>How are you feeling today?</item>
+                                    <item>How is it going?</item>
+                                </prompt>
+                                <getUserInput>
+                                    <input isOffline="true">
+                                    <grammar>
+                                    <item>Recipes</item>
+                                    <item>$ (CUISINE)={Cuisine_Preference}</item>
+                                    <item>$ (INGREDIENTS)={Ingredients_Preference}</item>
+                                    <item>$ recipes</item>
+                                    </grammar>
+                                    <goto ref="input_2443892"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Not so good</item>
+                                    <item>$ not * good</item>
+                                    <item>$ not * well</item>
+                                    <item>$ no * good</item>
+                                    </grammar>
+                                    <goto ref="output_2449637"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Not so bad</item>
+                                    <item>$ not * bad</item>
+                                    </grammar>
+                                    <goto ref="output_2449631"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Fine</item>
+                                    <item>$ good</item>
+                                    <item>$ fine</item>
+                                    <item>$ well</item>
+                                    <item>$ all right</item>
+                                    </grammar>
+                                    <output id="output_2449631">
+                                    <prompt selectionType="RANDOM">
+                                    <item>Good to hear!</item>
+                                    </prompt>
+                                    <goto ref="output_2414737"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Great</item>
+                                    <item>$ great</item>
+                                    <item>$ excellent</item>
+                                    <item>$ outstanding</item>
+                                    <item>$ fabulous</item>
+                                    <item>$ terrific</item>
+                                    <item>$ fantastic</item>
+                                    <item>$ awesome</item>
+                                    <item>$ happy</item>
+                                    </grammar>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Fantastic! So glad to hear it.</item>
+                                    </prompt>
+                                    <goto ref="output_2414737"/>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Bad</item>
+                                    <item>$ terrible</item>
+                                    <item>$ awful</item>
+                                    <item>$ worst</item>
+                                    <item>$ bored</item>
+                                    <item>$ sad</item>
+                                    <item>$ tired</item>
+                                    <item>$ hungry</item>
+                                    <item>$ thirsty</item>
+                                    <item>$ bad</item>
+                                    <item>$ badly</item>
+                                    <item>$ poor</item>
+                                    <item>$ poorly</item>
+                                    <item>$ crap</item>
+                                    <item>$ crappy</item>
+                                    </grammar>
+                                    <output id="output_2449637">
+                                    <prompt selectionType="RANDOM">
+                                    <item>I'm sorry to hear that.</item>
+                                    </prompt>
+                                    <goto ref="output_2414737"/>
+                                    </output>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                </getUserInput>
+                            </output>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>How are you</item>
+                            <item>$ how have you been doing</item>
+                            <item>$ how is it going</item>
+                            <item>$ how are you</item>
+                            <item>$ what's shaking</item>
+                            <item>$ what's up</item>
+                        </grammar>
+                        <action varName="Greeting_Count" operator="INCREMENT_BY">1</action>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <if>
+                            <cond varName="Greeting_Count" operator="GREATER_THEN">2</cond>
+                            <cond varName="Greeting_Count" operator="GREATER_THEN">2</cond>
+                            <output id="output_2459363">
+                                <prompt selectionType="RANDOM">
+                                    <item>You&amp;apos;re very polite, but don&amp;apos;t you want me to look up recipes for you?</item>
+                                </prompt>
+                                <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    </grammar>
+                                    <goto ref="output_2449874"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    </grammar>
+                                    <action varName="Greeting_Count" operator="SET_TO">0</action>
+                                    <output>
+                                    <prompt selectionType="RANDOM">
+                                    <item>Okay, fine.</item>
+                                    </prompt>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Okay</item>
+                                    </grammar>
+                                    <goto ref="output_2449874"/>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                </getUserInput>
+                            </output>
+                        </if>
+                        <input>
+                            <grammar>
+                                <item>Fine</item>
+                                <item>$ excellent</item>
+                                <item>$ outstanding</item>
+                                <item>$ fabulous</item>
+                                <item>$ terrific</item>
+                                <item>$ not good</item>
+                                <item>$ not so good</item>
+                                <item>$ not well</item>
+                                <item>$ not so well</item>
+                                <item>$ terrible</item>
+                                <item>$ awful</item>
+                                <item>$ worst</item>
+                                <item>$ bored</item>
+                                <item>$ sad</item>
+                                <item>$ good</item>
+                                <item>$ well</item>
+                                <item>$ fine</item>
+                                <item>$ thirsty</item>
+                                <item>$ hungry</item>
+                                <item>$ tired</item>
+                            </grammar>
+                            <output>
+                                <prompt>
+                                    <item>I am doing well, thanks.</item>
+                                </prompt>
+                                <goto ref="output_2414737"/>
+                            </output>
+                        </input>
+                        <output>
+                            <prompt>
+                                <item>I am doing well, thanks.</item>
+                            </prompt>
+                            <goto ref="output_2459184"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Nice to meet you</item>
+                            <item>$ nice to meet you</item>
+                            <item>$ pleasure to meet you</item>
+                            <item>$ make your acquaintance</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <if>
+                            <cond varName="Greeting_Count" operator="GREATER_THEN">2</cond>
+                            <output>
+                                <prompt>
+                                    <item>You&amp;apos;re very polite, but don&amp;apos;t you want me to look up recipes for you?</item>
+                                </prompt>
+                                <getUserInput>
+                                    <input>
+                                    <grammar>
+                                    <item>Yes</item>
+                                    </grammar>
+                                    <goto ref="output_2449874"/>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>No</item>
+                                    </grammar>
+                                    <action varName="Greeting_Count" operator="SET_TO">0</action>
+                                    <output>
+                                    <prompt>
+                                    <item>Okay, fine.</item>
+                                    </prompt>
+                                    </output>
+                                    </input>
+                                    <input>
+                                    <grammar>
+                                    <item>Okay</item>
+                                    </grammar>
+                                    <goto ref="output_2449874"/>
+                                    </input>
+                                    <goto ref="search_2414738"/>
+                                </getUserInput>
+                            </output>
+                        </if>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Nice to meet you too, {User_Name}!</item>
+                            </prompt>
+                            <goto ref="output_2414737"/>
+                        </output>
+                    </input>
+                </folder>
+                <folder label="CLOSING SEQUENCES">
+                    <input>
+                        <grammar>
+                            <item>I should be going</item>
+                            <item>$ should be going</item>
+                            <item>$ should go</item>
+                            <item>$ need to go</item>
+                            <item>$ got to go</item>
+                            <item>$ gotta run</item>
+                            <item>$ gotta go</item>
+                            <item>$ need to run</item>
+                            <item>$ need to leave</item>
+                            <item>$ have to leave</item>
+                            <item>$ have to go</item>
+                            <item>$ gtg</item>
+                        </grammar>
+                        <output id="output_2449675">
+                            <prompt selectionType="RANDOM">
+                                <item>Okay.</item>
+                            </prompt>
+                            <goto ref="output_2458386"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Thanks for your help</item>
+                            <item>$ thank you for your help</item>
+                            <item>$ thanks for your help</item>
+                        </grammar>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>You are welcome.</item>
+                            </prompt>
+                            <goto ref="output_2458386"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Goodbye</item>
+                        </grammar>
+                        <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                        <if>
+                            <cond varName="Terminal_Exchange" operator="EQUAL_TO_YES"/>
+                            <goto ref="output_2510314"/>
+                        </if>
+                        <if>
+                            <cond varName="Terminal_Exchange" operator="EQUAL_TO_NO"/>
+                            <goto ref="output_2449675"/>
+                        </if>
+                    </input>
+                </folder>
+            </folder>
+            <folder label="Storage"/>
+        </folder>
+        <folder label="Global">
+            <search ref="folder_2442951"/>
+        </folder>
+        <folder label="Concepts">
+            <folder label="Generic">
+                <concept>
+                    <grammar>
+                        <item>okay</item>
+                        <item>ok</item>
+                        <item>thanks</item>
+                        <item>thank you</item>
+                        <item>ok thanks</item>
+                        <item>ok thank you</item>
+                        <item>okay thanks</item>
+                        <item>okay thank you</item>
+                        <item>great thanks</item>
+                        <item>great thank you</item>
+                        <item>all right</item>
+                        <item>alright</item>
+                        <item>great</item>
+                        <item>cool</item>
+                        <item>aww</item>
+                        <item>awww</item>
+                        <item>oh</item>
+                        <item>oh okay</item>
+                        <item>oh ok</item>
+                        <item>ah</item>
+                        <item>ah okay</item>
+                        <item>ah ok</item>
+                        <item>got it</item>
+                        <item>gotcha</item>
+                        <item>cheers</item>
+                        <item>ta</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>Hello</item>
+                        <item>Hi</item>
+                        <item>Hola</item>
+                        <item>Howdy</item>
+                        <item>Hiya</item>
+                        <item>Hey</item>
+                        <item>Heya</item>
+                        <item>yello</item>
+                        <item>aloha</item>
+                        <item>hi there</item>
+                        <item>hey there</item>
+                        <item>Hello Watson</item>
+                        <item>Hi Watson</item>
+                        <item>Hola Watson</item>
+                        <item>Howdy Watson</item>
+                        <item>Hiya Watson</item>
+                        <item>Hey Watson</item>
+                        <item>Heya Watson</item>
+                        <item>yello Watson</item>
+                        <item>aloha Watson</item>
+                        <item>hi there Watson</item>
+                        <item>hey there Watson</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>Goodbye</item>
+                        <item>bye bye</item>
+                        <item>bye now</item>
+                        <item>bye</item>
+                        <item>later</item>
+                        <item>laters</item>
+                        <item>see you later</item>
+                        <item>see you</item>
+                        <item>see ya later</item>
+                        <item>see ya</item>
+                        <item>cya</item>
+                        <item>au revoir</item>
+                        <item>good night</item>
+                        <item>good day</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>yes</item>
+                        <item>yep</item>
+                        <item>yup</item>
+                        <item>yeah</item>
+                        <item>yeh</item>
+                        <item>y</item>
+                        <item>that's right</item>
+                        <item>sure</item>
+                        <item>sure go ahead</item>
+                        <item>go ahead</item>
+                        <item>yes thanks</item>
+                        <item>yes thank you</item>
+                        <item>yes please</item>
+                        <item>yah</item>
+                        <item>ya</item>
+                        <item>for sure</item>
+                        <item>fo shizzle</item>
+                        <item>fo shiz</item>
+                        <item>yeppers</item>
+                        <item>you betcha</item>
+                        <item>you bet</item>
+                        <item>you bet ya</item>
+                        <item>certainly</item>
+                        <item>yep I did</item>
+                        <item>yes I did</item>
+                        <item>yep I do</item>
+                        <item>yes I do</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>no</item>
+                        <item>n</item>
+                        <item>nope</item>
+                        <item>no way</item>
+                        <item>not really</item>
+                        <item>nah</item>
+                        <item>no thanks</item>
+                        <item>no thank you</item>
+                        <item>not atm</item>
+                        <item>not at the moment</item>
+                        <item>not yet</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>haha</item>
+                        <item>ha</item>
+                        <item>hehe</item>
+                        <item>lol</item>
+                        <item>rofl</item>
+                        <item>lmao</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>sorry</item>
+                        <item>apologize</item>
+                        <item>I am sorry</item>
+                        <item>I apologise</item>
+                        <item>I apologize</item>
+                        <item>apologies</item>
+                        <item>my apology</item>
+                        <item>my apologies</item>
+                        <item>so sorry</item>
+                        <item>very sorry</item>
+                        <item>extremely sorry</item>
+                        <item>extremely apologetic</item>
+                        <item>soz</item>
+                        <item>sozz</item>
+                        <item>so soz</item>
+                        <item>so sozz</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>you</item>
+                        <item>u</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>what is</item>
+                        <item>what&amp;apos;s</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>it</item>
+                        <item>that</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>person</item>
+                        <item>human</item>
+                        <item>real person</item>
+                        <item>actual person</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>do you know</item>
+                        <item>do you have information</item>
+                        <item>can you tell me</item>
+                        <item>what else do you know</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>can you</item>
+                        <item>can you please</item>
+                        <item>will you</item>
+                        <item>will you please</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>my name is</item>
+                        <item>I'm called</item>
+                        <item>people call me </item>
+                        <item>I'm known as</item>
+                        <item>you can call me</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>no problem</item>
+                        <item>it's nothing</item>
+                        <item>it's okay</item>
+                        <item>don't worry</item>
+                    </grammar>
+                </concept>
+            </folder>
+            <folder selectionType="RANDOM" label="Days of the week">
+                <concept>
+                    <grammar>
+                        <item>Monday</item>
+                        <item>Mon</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>Tuesday</item>
+                        <item>Tues</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>Wednesday</item>
+                        <item>Wed</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>Thursday</item>
+                        <item>Thurs</item>
+                        <item>Thu</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>Friday</item>
+                        <item>Fri</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>Saturday</item>
+                        <item>Sat</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>Sunday</item>
+                        <item>Sun</item>
+                    </grammar>
+                </concept>
+            </folder>
+            <folder selectionType="RANDOM" label="Recipe-related variations">
+                <concept>
+                    <grammar>
+                        <item>recipe</item>
+                        <item>recipes</item>
+                        <item>dish</item>
+                        <item>dishes</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>search</item>
+                        <item>search for</item>
+                        <item>look up</item>
+                        <item>lookup</item>
+                        <item>find</item>
+                        <item>check</item>
+                        <item>get</item>
+                    </grammar>
+                </concept>
+                <concept>
+                    <grammar>
+                        <item>I want to</item>
+                        <item>I'd like to</item>
+                        <item>I would like to</item>
+                        <item>I wanna</item>
+                    </grammar>
+                </concept>
+                <folder label="Cuisines">
+                    <concept>
+                        <grammar>
+                            <item>american</item>
+                            <item>continental</item>
+                            <item>burgers and fries</item>
+                            <item>burgers</item>
+                            <item>steak</item>
+                            <item>bacon</item>
+                            <item>fries</item>
+                        </grammar>
+                    </concept>
+                    <concept>
+                        <grammar>
+                            <item>jerk chicken</item>
+                            <item>goat curry</item>
+                            <item>reggae</item>
+                            <item>reggae nachos</item>
+                            <item>fish stew</item>
+                            <item>jerk pulled pork</item>
+                            <item>spicy jerk prawn</item>
+                            <item>jerk spice</item>
+                            <item>mango chicken</item>
+                            <item>sticky jerk</item>
+                        </grammar>
+                    </concept>
+                    <concept id="concept_1852694">
+                        <grammar>
+                            <item>chow mein</item>
+                            <item>cashew chicken</item>
+                            <item>sichuan</item>
+                            <item>crispy chilli beef</item>
+                            <item>sweet and sour chicken</item>
+                            <item>oriental fried rice</item>
+                            <item>hoisin pork</item>
+                            <item>kung pao chicken</item>
+                            <item>general tso's chicken</item>
+                        </grammar>
+                    </concept>
+                    <concept id="concept_1852810">
+                        <grammar>
+                            <item>french toast</item>
+                            <item>french onion soup</item>
+                            <item>boulangere potatoes</item>
+                            <item>french omelette</item>
+                            <item>pear tarte tatin</item>
+                            <item>creme brulee</item>
+                            <item>hollandaise</item>
+                            <item>baked ratatouille</item>
+                            <item>fennel dauphinoise</item>
+                        </grammar>
+                    </concept>
+                    <concept id="concept_1852697">
+                        <grammar>
+                            <item>lamb kleftiko</item>
+                            <item>greek-style roast fish</item>
+                            <item>greek lamb</item>
+                            <item>tzatziki</item>
+                            <item>feta</item>
+                            <item>quinoa greek salad</item>
+                            <item>greek beans</item>
+                            <item>lamb kebab</item>
+                            <item>gigantes plaki</item>
+                            <item>greek lamb with orzo</item>
+                            <item>greek pasta salad</item>
+                            <item>greek salad omelette</item>
+                            <item>moussaka</item>
+                            <item>halloumi</item>
+                            <item>souvlaki</item>
+                        </grammar>
+                    </concept>
+                    <concept id="concept_1852702">
+                        <grammar>
+                            <item>chicken balti</item>
+                            <item>beetroot curry</item>
+                            <item>chicken curry</item>
+                            <item>naan</item>
+                            <item>roti</item>
+                            <item>cardamom</item>
+                            <item>goan</item>
+                            <item>sag aloo</item>
+                            <item>saag aloo</item>
+                            <item>chicken tikka</item>
+                            <item>tandoori chicken</item>
+                            <item>sambar</item>
+                            <item>rasam</item>
+                            <item>masala chikcen</item>
+                            <item>chikcen tikka masala</item>
+                            <item>chicken biryani</item>
+                            <item>chicken briyani</item>
+                            <item>chikcen biriyani</item>
+                            <item>spiced paneer</item>
+                            <item>tomato chutney</item>
+                            <item>malai kofta</item>
+                            <item>dal tadka</item>
+                            <item>vegetable korma</item>
+                        </grammar>
+                    </concept>
+                    <concept>
+                        <grammar>
+                            <item>bento</item>
+                            <item>katsu</item>
+                            <item>sushi</item>
+                            <item>sesame brittle shards</item>
+                            <item>japanese greens</item>
+                            <item>teriyaki chicken</item>
+                            <item>miso</item>
+                            <item>japanese salmon</item>
+                            <item>japanese salad</item>
+                            <item>teriyaki beef</item>
+                            <item>wasabi</item>
+                            <item>katsu</item>
+                            <item>soba</item>
+                            <item>tempura</item>
+                            <item>japanese-style brown rice</item>
+                        </grammar>
+                    </concept>
+                    <concept id="concept_1852806">
+                        <grammar>
+                            <item>polenta</item>
+                            <item>mediterranean salad</item>
+                            <item>courgette</item>
+                            <item>lamb cutlet</item>
+                            <item>chorizo pilaf</item>
+                            <item>chorizo</item>
+                            <item>caponata</item>
+                            <item>pancetta</item>
+                            <item>mediterranean chicken</item>
+                            <item>stuffed peppers</item>
+                            <item>aioli</item>
+                            <item>mediterranean scones</item>
+                        </grammar>
+                    </concept>
+                </folder>
+            </folder>
+            <folder label="Off-topic">
+                <concept id="concept_2456113">
+                    <grammar>
+                        <item>dining</item>
+                        <item>restaurant</item>
+                        <item>restaurants</item>
+                        <item>place to eat</item>
+                        <item>places to eat</item>
+                        <item>diner</item>
+                        <item>diners</item>
+                        <item>cafe</item>
+                        <item>cafes</item>
+                        <item>cafeteria</item>
+                        <item>cafeterias</item>
+                        <item>Bar</item>
+                        <item>Bars</item>
+                        <item>Pub</item>
+                        <item>Pubs</item>
+                        <item>Tavern</item>
+                        <item>Taverns</item>
+                        <item>Brewery</item>
+                        <item>Breweries</item>
+                        <item>somewhere to eat</item>
+                        <item>eatery</item>
+                        <item>place to dine</item>
+                        <item>somewhere nice to eat</item>
+                        <item>eateries</item>
+                        <item>places to dine</item>
+                        <item>bistro</item>
+                        <item>a bistro</item>
+                        <item>bistros</item>
+                        <item>coffee shop</item>
+                        <item>coffee shops</item>
+                        <item>coffee place</item>
+                        <item>coffee places</item>
+                        <item>eating house</item>
+                        <item>eating houses</item>
+                        <item>snack bar</item>
+                        <item>snack bars</item>
+                        <item>juice bar</item>
+                        <item>juice bars</item>
+                        <item>health food shop</item>
+                        <item>fast food outlet</item>
+                        <item>fast food shop</item>
+                        <item>fast food outlets</item>
+                        <item>fast food shops</item>
+                        <item>food court</item>
+                        <item>food courts</item>
+                        <item>food mall</item>
+                        <item>food malls</item>
+                    </grammar>
+                </concept>
+                <concept id="concept_2456117">
+                    <grammar>
+                        <item>weather</item>
+                        <item>Rain</item>
+                        <item>Raining</item>
+                        <item>Snow</item>
+                        <item>Snowing</item>
+                        <item>Sunny</item>
+                        <item>Cloudy</item>
+                        <item>Sleet</item>
+                        <item>Freezing Rain</item>
+                        <item>Windy</item>
+                        <item>Tornado</item>
+                        <item>Hurricane</item>
+                    </grammar>
+                </concept>
+                <concept id="concept_2456118">
+                    <grammar>
+                        <item>traffic</item>
+                        <item>Traffic conditions</item>
+                        <item>Driving conditions</item>
+                        <item>Road conditions</item>
+                        <item>Streets</item>
+                        <item>Roads</item>
+                        <item>Freeways</item>
+                        <item>Highways</item>
+                        <item>Driving</item>
+                        <item>Rush hour</item>
+                        <item>Bus</item>
+                        <item>Buses</item>
+                        <item>Train</item>
+                        <item>Trains</item>
+                        <item>Car</item>
+                        <item>Cars</item>
+                        <item>Automobile</item>
+                        <item>Automobiles</item>
+                        <item>Bicycle</item>
+                        <item>Bicycles</item>
+                        <item>Bike</item>
+                        <item>Bikes</item>
+                        <item>Motorcycle</item>
+                        <item>Motorcycles</item>
+                        <item>Walking</item>
+                        <item>Driving</item>
+                        <item>Pedestrian</item>
+                    </grammar>
+                </concept>
+            </folder>
+        </folder>
+        <folder label="Unbound">
+            <action varName="Class1_Text" operator="SET_TO">{Array_Lookup.{Class1}}</action>
+            <action varName="Class2_Text" operator="SET_TO">{Array_Lookup.{Class2}}</action>
+            <output>
+                <prompt>
+                    <item>Do you mean {Class1_Text} or {Class2_Text}?</item>
+                </prompt>
+                <action varName="Defaulted_Previous" operator="SET_TO_YES"/>
+                <getUserInput>
+                    <input>
+                        <grammar>
+                            <item>Neither</item>
+                            <item>$ neither</item>
+                            <item>$ no</item>
+                        </grammar>
+                        <output>
+                            <prompt>
+                                <item>Please rephrase your request.</item>
+                            </prompt>
+                            <action varName="Defaulted_Previous" operator="SET_TO_NO"/>
+                            <goto ref="getUserInput_2414745"/>
+                        </output>
+                    </input>
+                    <input>
+                        <grammar>
+                            <item>Disambiguate Classes</item>
+                            <item>$ (CLASSES)={Class1}</item>
+                        </grammar>
+                        <action varName="Class1" operator="SET_TO">{Class1.value:main}</action>
+                        <output>
+                            <prompt/>
+                            <action varName="User_Input" operator="APPEND">~{Class1}</action>
+                            <goto ref="search_2414738">
+                                <action varName="User_Input" operator="SET_AS_USER_INPUT"/>
+                            </goto>
+                        </output>
+                    </input>
+                    <goto ref="search_2414738"/>
+                </getUserInput>
+            </output>
+        </folder>
+    </flow>
+    <entities>
+        <entity name="INGREDIENTS" entityType="GENERIC">
+            <value name="arugula" value="arugula">
+                <grammar>
+                    <item>$ arugula</item>
+                </grammar>
+            </value>
+            <value name="beet" value="beet">
+                <grammar>
+                    <item>$ beet</item>
+                    <item>$ beetroot</item>
+                    <item>$ beet root</item>
+                </grammar>
+            </value>
+            <value name="brussels sprout" value="brussels sprout">
+                <grammar>
+                    <item>$ brussels</item>
+                    <item>$ brussels sprout</item>
+                </grammar>
+            </value>
+            <value name="cabbage" value="cabbage">
+                <grammar>
+                    <item>$ cabbage</item>
+                </grammar>
+            </value>
+            <value name="celery" value="celery">
+                <grammar>
+                    <item>$ celery</item>
+                </grammar>
+            </value>
+            <value name="dill" value="dill">
+                <grammar>
+                    <item>$ dill</item>
+                </grammar>
+            </value>
+            <value name="avocado" value="avocado">
+                <grammar>
+                    <item>$ avocado</item>
+                </grammar>
+            </value>
+            <value name="bell pepper" value="bell pepper">
+                <grammar>
+                    <item>$ bell pepper</item>
+                    <item>$ green pepper</item>
+                </grammar>
+            </value>
+            <value name="cucumber" value="cucumber">
+                <grammar>
+                    <item>$ cucumber</item>
+                </grammar>
+            </value>
+            <value name="eggplant" value="eggplant">
+                <grammar>
+                    <item>$ eggplant</item>
+                    <item>$ aubergine</item>
+                    <item>$ brinjal</item>
+                </grammar>
+            </value>
+            <value name="pumpkin" value="pumpkin">
+                <grammar>
+                    <item>$ pumpkin</item>
+                </grammar>
+            </value>
+            <value name="squash" value="squash">
+                <grammar>
+                    <item>$ squash</item>
+                </grammar>
+            </value>
+            <value name="zucchini" value="zucchini">
+                <grammar>
+                    <item>$ zucchini</item>
+                    <item>$ zuchini</item>
+                    <item>$ zuccini</item>
+                </grammar>
+            </value>
+            <value name="artichoke" value="artichoke">
+                <grammar>
+                    <item>$ artichoke</item>
+                </grammar>
+            </value>
+            <value name="broccoli" value="broccoli">
+                <grammar>
+                    <item>$ broccoli</item>
+                </grammar>
+            </value>
+            <value name="caper" value="caper">
+                <grammar>
+                    <item>$ caper</item>
+                </grammar>
+            </value>
+            <value name="cauliflower" value="cauliflower">
+                <grammar>
+                    <item>$ cauliflower</item>
+                </grammar>
+            </value>
+            <value name="chickpea" value="chickpea">
+                <grammar>
+                    <item>$ chickpea</item>
+                    <item>$ garbanzo beans</item>
+                    <item>$ channa</item>
+                </grammar>
+            </value>
+            <value name="lentil" value="lentil">
+                <grammar>
+                    <item>$ lentil</item>
+                    <item>$ lentils</item>
+                </grammar>
+            </value>
+            <value name="lima bean" value="lima bean">
+                <grammar>
+                    <item>$ lima bean</item>
+                    <item>$ lima beans</item>
+                </grammar>
+            </value>
+            <value name="okra" value="okra">
+                <grammar>
+                    <item>$ okra</item>
+                    <item>$ ladys finger</item>
+                    <item>$ ladies finger</item>
+                </grammar>
+            </value>
+            <value name="pea" value="pea">
+                <grammar>
+                    <item>$ pea</item>
+                    <item>$ peas</item>
+                </grammar>
+            </value>
+            <value name="peanut" value="peanut">
+                <grammar>
+                    <item>$ peanut</item>
+                    <item>$ peanuts</item>
+                </grammar>
+            </value>
+            <value name="soybean" value="soybean">
+                <grammar>
+                    <item>$ soy</item>
+                    <item>$ soybean</item>
+                </grammar>
+            </value>
+            <value name="asparagus" value="asparagus">
+                <grammar>
+                    <item>$ asparagus</item>
+                </grammar>
+            </value>
+            <value name="asparagus" value="asparagus">
+                <grammar>
+                    <item>$ asparagus</item>
+                </grammar>
+            </value>
+            <value name="chives" value="chives">
+                <grammar>
+                    <item>$ chive</item>
+                    <item>$ chives</item>
+                </grammar>
+            </value>
+            <value name="garlic" value="garlic">
+                <grammar>
+                    <item>$ garlic</item>
+                </grammar>
+            </value>
+            <value name="leek" value="leek">
+                <grammar>
+                    <item>$ leek</item>
+                </grammar>
+            </value>
+            <value name="onion" value="onion">
+                <grammar>
+                    <item>$ onion</item>
+                    <item>$ red onion</item>
+                    <item>$ yellow onion</item>
+                    <item>$ white onion</item>
+                    <item>$ pearl onion</item>
+                </grammar>
+            </value>
+            <value name="shallot" value="shallot">
+                <grammar>
+                    <item>$ shallot</item>
+                </grammar>
+            </value>
+            <value name="carrot" value="carrot">
+                <grammar>
+                    <item>$ carrot</item>
+                </grammar>
+            </value>
+            <value name="ginger" value="ginger">
+                <grammar>
+                    <item>$ ginger</item>
+                    <item>$ ginger root</item>
+                </grammar>
+            </value>
+            <value name="horseradish" value="horseradish">
+                <grammar>
+                    <item>$ horseradish</item>
+                    <item>$ horse radish</item>
+                </grammar>
+            </value>
+            <value name="parsnip" value="parsnip">
+                <grammar>
+                    <item>$ parsnip</item>
+                </grammar>
+            </value>
+            <value name="radish" value="radish">
+                <grammar>
+                    <item>$ radish</item>
+                </grammar>
+            </value>
+            <value name="turmeric" value="turmeric">
+                <grammar>
+                    <item>$ turmeric</item>
+                </grammar>
+            </value>
+            <value name="wasabi" value="wasabi">
+                <grammar>
+                    <item>$ wasabi</item>
+                </grammar>
+            </value>
+            <value name="yam" value="yam">
+                <grammar>
+                    <item>$ yam</item>
+                    <item>$ yams</item>
+                </grammar>
+            </value>
+
+            <value name="beef" value="beef">
+                <grammar>
+                    <item>$ beef</item>
+                    <item>$ steak</item>
+                    <item>$ beef liver</item>
+                </grammar>
+            </value>
+            <value name="goat" value="goat">
+                <grammar>
+                    <item>$ goat</item>
+                </grammar>
+            </value>
+            <value name="ham" value="ham">
+                <grammar>
+                    <item>$ ham</item>
+                </grammar>
+            </value>
+            <value name="lamb" value="lamb">
+                <grammar>
+                    <item>$ lamb</item>
+                    <item>$ mutton</item>
+                </grammar>
+            </value>
+            <value name="pork" value="pork">
+                <grammar>
+                    <item>$ pork</item>
+                </grammar>
+            </value>
+            <value name="bacon" value="bacon">
+                <grammar>
+                    <item>$ bacon</item>
+                </grammar>
+            </value>
+            <value name="rabbit" value="rabbit">
+                <grammar>
+                    <item>$ rabbit</item>
+                </grammar>
+            </value>
+            <value name="veal" value="veal">
+                <grammar>
+                    <item>$ veal</item>
+                </grammar>
+            </value>
+            <value name="deer" value="deer">
+                <grammar>
+                    <item>$ deer</item>
+                    <item>$ venison</item>
+                </grammar>
+            </value>
+
+            <value name="chicken" value="chicken">
+                <grammar>
+                    <item>$ chicken</item>
+                    <item>$ poultry</item>
+                </grammar>
+            </value>
+            <value name="duck" value="duck">
+                <grammar>
+                    <item>$ duck</item>
+                </grammar>
+            </value>
+            <value name="turkey" value="turkey">
+                <grammar>
+                    <item>$ turkey</item>
+                </grammar>
+            </value>
+
+            <value name="fish" value="fish">
+                <grammar>
+                    <item>$ fish</item>
+                    <item>$ anchovy</item>
+                    <item>$ anchovies</item>
+                    <item>$ bass</item>
+                    <item>$ cod</item>
+                    <item>$ flounder</item>
+                    <item>$ halibut</item>
+                    <item>$ lamprey</item>
+                    <item>$ mackerel</item>
+                    <item>$ mullet</item>
+                    <item>$ pike</item>
+                    <item>$ pomfret</item>
+                    <item>$ salmon</item>
+                    <item>$ sardine</item>
+                    <item>$ tilapia</item>
+                    <item>$ trout</item>
+                    <item>$ tuna</item>
+                </grammar>
+            </value>
+            <value name="crab" value="crab">
+                <grammar>
+                    <item>$ crab</item>
+                </grammar>
+            </value>
+            <value name="lobster" value="lobster">
+                <grammar>
+                    <item>$ lobster</item>
+                </grammar>
+            </value>
+            <value name="shrimp" value="shrimp">
+                <grammar>
+                    <item>$ shrimp</item>
+                    <item>$ prawn</item>
+                </grammar>
+            </value>
+
+            <value name="butter" value="butter">
+                <grammar>
+                    <item>$ butter</item>
+                </grammar>
+            </value>
+
+            <value name="cheese" value="cheese">
+                <grammar>
+                    <item>$ cheese</item>
+                    <item>$ mozzarella</item>
+                    <item>$ cheddar</item>
+                    <item>$ swiss</item>
+                    <item>$ pepperjack</item>
+                    <item>$ cottage</item>
+                    <item>$ cottage cheese</item>
+                </grammar>
+            </value>
+
+            <value name="egg" value="egg">
+                <grammar>
+                    <item>$ egg</item>
+                    <item>$ eggs</item>
+                </grammar>
+            </value>
+            <value name="rice" value="rice">
+                <grammar>
+                    <item>$ rice</item>
+                    <item>$ basmati</item>
+                </grammar>
+            </value>
+
+            <value name="potato" value="potato">
+                <grammar>
+                    <item>$ potato</item>
+                    <item>$ potatoes</item>
+                </grammar>
+            </value>
+            <value name="tomato" value="tomato">
+                <grammar>
+                    <item>$ tomato</item>
+                    <item>$ tomatoes</item>
+                </grammar>
+            </value>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="CUISINE" entityType="GENERIC">
+            <value name="American" value="American">
+                <grammar>
+                    <item>american</item>
+                    <item>cheeseburgers</item>
+                    <item>hamburgers</item>
+                    <item>burgers and fries</item>
+                    <item>pancakes</item>
+                </grammar>
+            </value>
+            <value name="Caribbean" value="Caribbean">
+                <grammar>
+                    <item>caribbean</item>
+                    <item>jamaican</item>
+                    <item>jerk</item>
+                    <item>trinidadian</item>
+                </grammar>
+            </value>
+            <value name="Chinese" value="Chinese">
+                <grammar>
+                    <item>chinese</item>
+                    <item>asian</item>
+                    <item>kung pao</item>
+                    <item>general tso</item>
+                </grammar>
+            </value>
+            <value name="French" value="French">
+                <grammar>
+                    <item>french</item>
+                    <item>ratatouille</item>
+                    <item>pates</item>
+                    <item>fromage</item>
+                </grammar>
+            </value>
+            <value name="Greek" value="Greek">
+                <grammar>
+                    <item>greek</item>
+                </grammar>
+            </value>
+            <value name="Indian" value="Indian">
+                <grammar>
+                    <item>indian</item>
+                    <item>south indian</item>
+                    <item>south asian</item>
+                    <item>desi</item>
+                    <item>pakistani</item>
+                    <item>sri lankan</item>
+                </grammar>
+            </value>
+            <value name="Italian" value="Italian">
+                <concept ref="concept_1852694"/>
+                <grammar>
+                    <item>italian</item>
+                    <item>italiano</item>
+                    <item>pizza</item>
+                    <item>pasta</item>
+                </grammar>
+            </value>
+            <value name="Japanese" value="Japanese">
+                <concept ref="concept_2503401"/>
+                <grammar>
+                    <item>japanese</item>
+                    <item>sushi</item>
+                    <item>bento</item>
+                    <item>miso</item>
+                    <item>katsu</item>
+                    <item>teriyaki</item>
+                </grammar>
+            </value>
+            <value name="Mediterranean" value="Mediterranean">
+                <grammar>
+                    <item>mediterranean</item>
+                    <item>middle eastern</item>
+                    <item>quinoa</item>
+                    <item>polenta</item>
+                    <item>chorizo</item>
+                    <item>caponata</item>
+                </grammar>
+            </value>
+            <value name="Mexican" value="Mexican">
+                <grammar>
+                    <item>mexican</item>
+                    <item>taco</item>
+                    <item>burrito</item>
+                    <item>tostada</item>
+                    <item>fajita</item>
+                    <item>tortilla</item>
+                    <item>enchilada</item>
+                    <item>carne</item>
+                    <item>nacho</item>
+                </grammar>
+            </value>
+            <value name="Spanish" value="Spanish">
+                <concept ref="concept_1852810"/>
+                <grammar>
+                    <item>spanish</item>
+                    <item>hake</item>
+                    <item>paella</item>
+                    <item>hake</item>
+                    <item>gazpacho</item>
+                </grammar>
+            </value>
+            <value name="Thai" value="Thai">
+                <concept ref="concept_1852697"/>
+                <grammar>
+                    <item>thai</item>
+                    <item>red curry</item>
+                    <item>green curry</item>
+                    <item>pad thai</item>
+                    <item>tom yum</item>
+                </grammar>
+            </value>
+            <value name="Vietnamese" value="Vietnamese">
+                <grammar>
+                    <item>vietnamese</item>
+                    <item>vietnam</item>
+                    <item>pho</item>
+                    <item>bang bang</item>
+                </grammar>
+            </value>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="DINING" entityType="GENERIC">
+            <value name="restaurants" value="restaurants">
+                <concept ref="concept_2456113"/>
+                <grammar>
+                    <item>I am hungry</item>
+                </grammar>
+            </value>
+            <value name="bars" value="bars"/>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="WEATHER" entityType="GENERIC">
+            <value name="weather" value="weather">
+                <concept ref="concept_2456117"/>
+            </value>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="TRAFFIC" entityType="GENERIC">
+            <value name="traffic" value="traffic">
+                <concept ref="concept_2456118"/>
+            </value>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="VIRTUAL_AGENTS" entityType="GENERIC">
+            <value name="Watson" value="Watson"/>
+            <value name="Siri" value="Siri"/>
+            <value name="Cortana" value="Cortana"/>
+            <value name="Google Now" value="Google Now"/>
+            <value name="HAL" value="HAL"/>
+            <value name="Glados" value="Glados"/>
+            <value name="Skynet" value="Skynet"/>
+            <value name="Agent Smith" value="Agent Smith"/>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="BY_OTHER_RECIPE" entityType="GENERIC">
+            <entityRules></entityRules>
+        </entity>
+        <entity name="UNSUPPORTED_CUISINES" entityType="GENERIC">
+            <value name="British" value="British">
+                <grammar>
+                    <item>british</item>
+                    <item>english</item>
+                    <item>scottish</item>
+                    <item>irish</item>
+                </grammar>
+            </value>
+            <value name="African" value="African">
+                <concept ref="concept_1852702"/>
+                <grammar>
+                    <item>moroccan</item>
+                    <item>african</item>
+                    <item>ethiopian</item>
+                    <item>nigerian</item>
+                    <item>kenyan</item>
+                </grammar>
+            </value>
+            <value name="Turkish" value="Turkish">
+                <grammar>
+                    <item>turkish</item>
+                    <item>imam bayildi</item>
+                    <item>pilau</item>
+                </grammar>
+            </value>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="DYNAMIC_DATA" entityType="GENERIC">
+            <value name="DataCapture" value="DataCapture">
+                <grammar>
+                    <item>*</item>
+                </grammar>
+            </value>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="CLASSES" entityType="GENERIC">
+            <value name="look up recipes" value="SearchRecipes">
+                <grammar>
+                    <item>recipes</item>
+                </grammar>
+            </value>
+            <value name="do something else" value="OtherClass"/>
+            <value name="that's your name" value="GiveName"/>
+            <value name="to greet me" value="OpeningTalk"/>
+            <value name="to say goodbye" value="ClosingTalk"/>
+            <value name="you just want to chit chat" value="SmallTalk"/>
+            <value name="you don't understand" value="RepairTalk"/>
+            <value name="to check on something" value="PreSequence"/>
+            <value name="to say yes" value="YesClass"/>
+            <value name="to say no" value="NoClass"/>
+            <value name="just acknowledging me" value="3rdTurnReceipts"/>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="UNSUPPORTED_CLASSES" entityType="GENERIC">
+            <entityRules></entityRules>
+        </entity>
+        <entity name="UNSUPPORTED_ACTIONS" entityType="GENERIC">
+            <value name="look up recipes by name" value="name">
+                <grammar>
+                    <item>names</item>
+                    <item>recipe name</item>
+                    <item>recipe names</item>
+                </grammar>
+            </value>
+            <entityRules></entityRules>
+        </entity>
+        <entity name="SUPPORTED_ACTIONS" entityType="GENERIC">
+            <value name="look up recipes by cuisine and ingredients" value="recipes">
+                <grammar>
+                    <item>recipe</item>
+                </grammar>
+            </value>
+            <value name="look up recipes by ingredients" value="ingredient">
+                <grammar>
+                    <item>ingredient</item>
+                    <item>ingredients</item>
+                </grammar>
+            </value>
+            <value name="look up recipes by their cuisine" value="cuisine">
+                <grammar>
+                    <item>cuisines</item>
+                    <item>type of cuisine</item>
+                    <item>dish type</item>
+                    <item>dish origin</item>
+                </grammar>
+            </value>
+            <entityRules></entityRules>
+        </entity>
+    </entities>
+    <constants>
+        <var_folder name="Home">
+        </var_folder>
+    </constants>
+    <variables>
+        <var_folder name="Home">
+            <var_folder name="Classifier" type="VAR">
+                <var name="Class1_Confidence" type="NUMBER"
+                    initValue="0" description="Confidence score for Class1 from NL classifier"/>
+                <var name="Class2_Confidence" type="NUMBER"
+                    initValue="0" description="Confidence score for Class2 from NL classifier"/>
+                <var name="Combined_Confidence" type="NUMBER"
+                    initValue="0" description="Class1_Confidence + Class2_Confidence"/>
+                <var name="Class1_Text" type="TEXT" description="Display text for class1"/>
+                <var name="Class2_Text" type="TEXT" description="Display text for class2"/>
+                <var name="Previous_Class" type="TEXT" description="Place to store utterance class"/>
+                <var name="Array_Lookup" type="TEXT"
+                    initValue="&lt;SearchRecipes>look up recipes&lt;/SearchRecipes>&lt;OtherClass>do something else&lt;/OtherClass>&lt;GiveName>that's your name&lt;/GiveName>&lt;OpeningTalk>to greet me&lt;/OpeningTalk>&lt;ClosingTalk>to say goodbye&lt;/ClosingTalk>&lt;SmallTalk>you just want to chit chat&lt;/SmallTalk>&lt;RepairTalk>you don't understand&lt;/RepairTalk>&lt;PreSequence>to check on something&lt;/PreSequence>&lt;YesClass>to say yes&lt;/YesClass>&lt;NoClass>to say no&lt;/NoClass>&lt;3rdTurnReceipts>just acknowledging me&lt;/3rdTurnReceipts>" description="For matching Class1 to Class1_Text"/>
+                <var name="Defaulted_Previous" type="YESNO"
+                    initValue="No" description="Whether input has hit Default node already"/>
+                <var name="Node_Class" type="TEXT"/>
+                <var name="Class1" type="TEXT"/>
+                <var name="Class2" type="TEXT"/>
+            </var_folder>
+            <var_folder name="Conversation Management" type="VAR">
+                <var name="Greeting_Count" type="NUMBER" initValue="0" description="How many times a user says &amp;quot;hi&amp;quot; or &amp;quot;howareyou&amp;quot;"/>
+                <var name="Small_Talk_Count" type="NUMBER" initValue="0" description="How many times User engages Small Talk sequences"/>
+                <var name="Out-of-Scope_Count" type="NUMBER"
+                    initValue="0" description="How many times User engages out-of-scope sequences"/>
+                <var name="User_Name" type="TEXT" initValue="friend"/>
+                <var name="First_Time" type="YESNO" initValue="Yes" description="User&amp;apos;s first time using the app."/>
+                <var name="User_Input" type="TEXT"/>
+                <var name="Topic" type="TEXT"/>
+                <var name="Request_Success" type="YESNO" description="Did the user find what s/he was looking for?"/>
+                <var name="Terminal_Exchange" type="YESNO"
+                    initValue="No" description="Has the system already said goodbye?"/>
+            </var_folder>
+            <var_folder name="Recipes Search" type="VAR">
+                <var name="Display_Recipe_Image" type="YESNO" initValue="No"/>
+                <var name="Display_Recipe_Details" type="YESNO" initValue="No"/>
+                <var name="Search_Results" type="TEXT" description="No_Hits, One_Hit, Multiple_Hits"/>
+                <var name="Num_Recipes" type="NUMBER" initValue="0" description="Number of recipe search results"/>
+                <var name="Current_Index" type="NUMBER" initValue="0" description="Range of recipes results to display. Values: 10, 20, 30..."/>
+                <var name="Show_Next" type="YESNO" initValue="No" description="Show the next batch of recipe search results."/>
+                <var name="Show_Previous" type="YESNO" initValue="No" description="Show previous batch of recipes search results."/>
+                <var name="Total_Pages" type="NUMBER" initValue="0" description="Total number of pages returned by TMDB"/>
+                <var name="Last_Results" type="YESNO" initValue="No" description="Determines if user has hit the Last Results node before."/>
+                <var name="First_Results" type="YESNO" initValue="No" description="Determines if user has gone back to first results already."/>
+                <var name="Page" type="TEXT" initValue="new" description="For paging search results: new, next, previous, repeat"/>
+                <var name="Ingredients_Preference" type="TEXT" description="User&amp;apos;s preferred ingredients"/>
+                <var name="Cuisine_Preference" type="TEXT" description="User&amp;apos;s preferred cuisine."/>
+                <var name="Search_Now" type="YESNO" initValue="No" description="Tells backend when to call the recipe API"/>
+                <var name="Selected_Recipe" type="TEXT"/>
+                <var name="Index_Updated" type="YESNO" initValue="Yes"/>
+            </var_folder>
+        </var_folder>
+    </variables>
+    <settings>
+        <setting name="AUTOLEARN" type="USER">false</setting>
+        <setting name="LANGUAGE" type="USER">en-US</setting>
+        <setting name="RESPONSETIME" type="USER">-2</setting>
+        <setting name="MAXAUTOLEARNITEMS" type="USER">2</setting>
+        <setting name="NUMAUTOSETRELATED" type="USER">0</setting>
+        <setting name="TIMEZONEID" type="USER">America/Tijuana</setting>
+        <setting name="AUTOSETRELATEDNODEID" type="USER">2158864</setting>
+        <setting name="INPUTMASKTYPE" type="USER">0</setting>
+        <setting name="CONCEPTMATCHING" type="USER">1</setting>
+        <setting name="UI_COLOUR"></setting>
+        <setting name="DNR_NODE_ID">-16</setting>
+        <setting name="USE_CONCEPTS">1</setting>
+        <setting name="PARENT_ACCOUNT">pconcepts</setting>
+        <setting name="AL_NONE_LABEL">None of the above</setting>
+        <setting name="DEFAULT_DNR_RETURN_POINT_CANDIDATE">-1</setting>
+        <setting name="ENTITIES_SCOPE">3</setting>
+        <setting name="MULTISENT">0</setting>
+        <setting name="DEFAULT_POINT_NODE_ID">2531765</setting>
+        <setting name="PLATFORM_VERSION">10.1</setting>
+        <setting name="USE_TRANSLATIONS">2</setting>
+        <setting name="USE_SPELLING_CORRECTIONS">2</setting>
+        <setting name="USE_STOP_WORDS">2</setting>
+    </settings>
+    <specialSettings>
+        <specialSetting label="Offline Output">
+            <variations/>
+        </specialSetting>
+        <specialSetting label="AutoLearn Statement" selectionType="SEQUENTIAL">
+            <variations/>
+        </specialSetting>
+        <specialSetting label="DNR Join Statement" selectionType="RANDOM">
+            <variations/>
+        </specialSetting>
+    </specialSettings>
+</dialog>

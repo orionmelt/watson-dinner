@@ -1,0 +1,1201 @@
+/*Start Bootstrap*/
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+}
+
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+}
+
+.navbar-fixed-bottom, .navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+    display: table;
+    content: " ";
+}
+
+.btn-group-vertical>.btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after {
+    clear: both;
+}
+
+.col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+    height: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+img {
+    vertical-align: middle;
+    border: 0;
+}
+
+.container {
+    padding-right: 15px; 
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+table {
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 0;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+input {
+    line-height: normal;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+div.dialog-body-intro>.logo {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    margin: 40px 0;
+    text-transform: uppercase;
+}
+
+.logo i.fa {
+    color: #fff;
+    background-color: #43A047;
+    padding:10px;
+    margin: 0px 10px;
+    border-radius: 50%;
+}
+
+div.dialog-body-intro>.logo i.fa {
+    width: 60px;
+    height: 60px;
+}
+
+#dialog-header .logo {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    padding: 14px 0;
+    text-transform: uppercase;
+}
+
+#dialog-header .logo i.fa {
+    width: 36px;
+    height: 36px;
+}
+
+.recipe-image {
+    width: 100%;
+}
+
+.h3, h3 {
+    font-size: 24px;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+/*End Bootstrap*/
+
+.dialog-body {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: #323232;
+    transition: background-image 1s ease-in-out;
+}
+
+.dialog-body-running {
+    background: none;
+}
+
+html, body {
+    height: 100%;
+    min-height: 100%;
+    border: 0px;
+    margin: 0px;
+    overflow-y: hidden;
+}
+
+.ng-view {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 35px;
+}
+
+/*HEADER*/
+.dialog-header-chatting .dialog-header-inner, .dialog-header-preview .dialog-header-inner {
+    background-color: #424242;
+    height: 60px;
+}
+
+.dialog-header-inner {
+    min-height: 35px;
+}
+
+.dialog-header-intro, .dialog-header-chatting, .dialog-header-preview {
+    padding-right: 0px;
+    padding-left: 0px;
+    color: #ECECEC;
+}
+
+.dialog-recipe-review {
+    color: #FFFFFF;
+}
+
+.dialog-review-value {
+    padding-left: 0px;
+}
+
+.dialog-recipe-info-spacing {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.dialog-header-text {
+    text-align: center;
+}
+
+.navbar {
+    height: 35px;
+    border: 0px;
+}
+
+/*Links on home page*/
+.dialog-link {
+    color: #ECECEC;
+    padding: 6px;
+    font-size: 11px;
+}
+
+.dialog-links-parent {
+    display: none;
+}
+
+.dialog-collapse-text-toggle {
+    font-size: 16px;
+}
+
+.dialog-recipe-overview {
+    font-size: 16px;
+}
+
+.dialog-links-parent.dialog-links-parent-intro {
+    position: fixed;
+    color: #FFFFFF;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+}
+
+.dialog-entry .dialog-white-bg {
+    background-color: #FFFFFF;
+}
+
+.dialog-mct-option {
+    margin-top: 10px;
+    margin-left: 6px;
+    padding-top: 11px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 25px;
+    vertical-align: middle;
+    text-align: center;
+    min-width: 75px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    color: #424242;
+    line-height: 20px;
+    display: inline-block;
+}
+
+.dialog-mct-option:hover {
+    border-color: #00abfc;
+    color: #00abfc;
+}
+
+/*
+ * Form controls
+ */
+.dialog-form-input-container {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.footer-intro {
+    display: block;
+    vertical-align: middle;
+    background-color: #424242;
+    padding-bottom: 75px;
+}
+
+.form-group .dialog-form-input {
+    padding-left: 5px;
+    box-shadow: none;
+    box-sizing: border-box;
+    height: 45px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0px;
+    border-color: #ABABAB;
+    position: relative;
+    font-size: 24px;
+    color: #424242;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-bottom: 1px solid;
+}
+
+.footer-intro .form-group .dialog-form-input {
+    border-color: #FFFFFF;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-bottom: 1px solid;
+    font-size: 24px;
+}
+
+.dialog-resize-col {
+    display: none;
+}
+
+.footer-chatting, .footer-preview {
+    background-color: #FFFFFF;
+    position: absolute;
+    bottom: 0;
+    /* Set the fixed height of the footer here */
+    width: 100%;
+}
+
+.dialog-form-input:after {
+    content: "";
+    display: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.dialog-body-intro .dialog-form-input {
+    background-color: transparent;
+    color: white;
+}
+
+.dialog-small-screen-placeholder-chatting, .dialog-small-screen-placeholder-preview {
+    display: none;
+}
+
+.dialog-body-intro {
+    text-align: center;
+    display: table;
+}
+
+.dialog-intro-text-intro {
+    text-align: center;
+}
+
+.dialog-intro-text-chatting, .dialog-intro-text-preview {
+    display: none;
+}
+
+.dialog-intro-text-chatting, .dialog-intro-text-preview {
+    color: white;
+    padding: 15px;
+    padding-top: 25px;
+}
+
+.dialog-happy-text-chatting, .dialog-happy-text-preview, .dialog-placeholder-chatting, .dialog-placeholder-preview {
+    display: none;
+}
+
+.dialog-placeholder-intro, .dialog-happy-text-intro {
+    color: #FFFFFF;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    font-size: 28px;
+}
+
+.dialog-placeholder-intro {
+    font-weight: bold;
+}
+
+.dialog-input-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.dialog-button-col {
+    width: 75px;
+    padding-left: 10px;
+    display: none;
+}
+
+.footer-intro .dialog-button-col {
+    display: table-cell;
+}
+
+.dialog-button {
+    height: 35px;
+    width: 100%;
+    padding-bottom: 2px;
+    border: solid 2px #00D6C3;
+    color: #00D6C3;
+    background-color: transparent;
+}
+
+.dialog-button:hover, .dialog-button:focus {
+    color: #000000;
+    background-color: #00D6C3;
+}
+
+/*PLACEHOLDER Color change*/
+.dialog-body-chatting ::-webkit-input-placeholder { /* WebKit browsers */
+    color: #C7C7C7;
+}
+
+.dialog-body-chatting :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #C7C7C7;
+}
+
+.dialog-body-chatting ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #C7C7C7;
+}
+
+.dialog-body-chatting :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #C7C7C7;
+}
+
+.dialog-body-preview ::-webkit-input-placeholder { /* WebKit browsers */
+    color: #C7C7C7;
+}
+
+.dialog-body-preview :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #C7C7C7;
+}
+
+.dialog-body-preview ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #C7C7C7;
+}
+
+.dialog-body-preview :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #C7C7C7;
+}
+
+.dialog-body-intro ::-webkit-input-placeholder { /* WebKit browsers */
+    color: #6E6E6E;
+}
+
+.dialog-body-intro :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #6E6E6E;
+}
+
+.dialog-body-intro ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #6E6E6E;
+}
+
+.dialog-body-intro :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #6E6E6E;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #6E6E6E;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #6E6E6E;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #6E6E6E;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #6E6E6E;
+}
+
+/*
+ * End form controls
+ */
+
+/*
+ * Conversation controls
+ */
+.dialog-container-chatting {
+    height: 100%;
+}
+
+.dialog-center {
+    height: 100%;
+    position: relative;
+}
+
+.dialog-center-chatting {
+    top: 0px !important;
+}
+
+.dialog-response {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.container .dialog-response .dialog-hidden {
+    display: none;
+}
+
+.dialog-segment-bkg, .ng-enter .dialog-segment-bkg {
+    height: 55px;
+    display: table;
+    width: 100%;
+}
+
+.dialog-watson-row>.dialog-segment-bkg>.dialog-row-text {
+    border-radius: 10px;
+    background-color: #E8F5E9;
+}
+
+.dialog-user-row>.dialog-segment-bkg>.dialog-row-text {
+    border-radius: 10px;
+    background-color: #E1F5FE;
+}
+
+.dialog-watson-row, .dialog-user-row, .dialog-watson-row.ng-enter.ng-enter-active, .dialog-user-row.ng-enter.ng-enter-active {
+    border: 0px solid #FFFFFF;
+    transition: bottom .35s;
+    bottom: 0;
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.dialog-user-row, .dialog-user-row.ng-enter.ng-enter-active {
+    padding-right: 75px; /*compensate for avatar*/
+    text-align: right;
+}
+
+.dialog-row-text {
+    display: table-cell;
+    padding-right: 10px;
+    padding-left: 10px;
+    vertical-align: middle;
+}
+
+.dialog-user-row .dialog-white-bg .dialog-row-text {
+    padding-right: 5px;
+    padding-left: 0px;
+}
+
+.dialog-watson-row, .dialog-watson-row.ng-enter.ng-enter-active {
+    text-align: left;
+    padding-left: 75px;
+    font-size: 16px;
+    color: #252525;
+}
+
+.dialog-user-row.ng-enter, .dialog-watson-row.ng-enter {
+    bottom: -50px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dialog-watson-row.ng-enter {
+    bottom: -10px;
+}
+
+.container .dialog-user-row:after {
+    content: " ";
+    font-weight: 700;
+    color: #fff;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    width: 55px;
+    display: inline-block;
+    background-image: url("../images/human_avatar.svg");
+    background-size: 50% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #039BE5;
+}
+
+.container .watson-thinking.dialog-watson-row:before {
+    content: none;
+}
+
+.container .dialog-watson-row:before {
+    content: " ";
+    position: absolute;
+    height: 100%;
+    width: 55px;
+    display: inline-block;
+    left: 0px;
+    top: 0px;
+    background-image: url("../images/watson_white.png");
+    background-repeat: no-repeat;
+    background-size: 50% auto;
+    background-position: center center;
+    background-color: #43A047;
+}
+
+.watson-thinking {
+    background-image: url("../images/watson_black_animate.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    height: 55px;
+}
+
+.dialog-watson-row.watson-thinking {
+    border-right-width: 0px;
+}
+
+.dialog-recipe-links-parent, .dialog-recipe-links-parent.ng-enter.ng-enter-active {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-bottom: 25px;
+}
+
+.dialog-recipe {
+    display: block;
+}
+
+.dialog-recipe-links-parent .dialog-recipe:focus {
+    outline: none;
+}
+
+.dialog-recipe, .dialog-recipe.ng-enter.ng-enter-active {
+    text-align: center;
+    opacity: 1;
+    -webkit-transition: 0.7s linear all;
+    transition: 0.7s linear all;
+}
+
+.dialog-recipe.ng-enter {
+    opacity: 0;
+}
+
+.dialog-recipe.ng-enter-stagger, .dialog-recipe.ng-leave-stagger, .dialog-recipe.ng-move-stagger {
+    /* 200ms will be applied between each sucessive enter operation */
+    /* this will have a 100ms delay between each successive leave animation */
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+    /* in case the stagger doesn't work then these two values
+     must be set to 0 to avoid an accidental CSS inheritance */
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+.dialog-recipe.ng-leave, .dialog-recipe.ng-move.ng-move-active, .dialog-recipe.ng-enter.ng-enter-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dialog-recipe-link {
+    margin: 5px;
+    padding-top: 11px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    cursor: pointer;
+    color: #424242;
+    background-color: #FFFFFF;
+}
+
+.dialog-recipe-link:hover {
+    border-color: #00abfc;
+    color: #00abfc;
+}
+
+.dialog-entries {
+    margin-bottom: 10px;
+}
+
+
+.dialog-preview-parent {
+    display: block;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    background: #F5F5F5;
+    color: #333;
+    z-index: 3000; /*has to be a huge number to overlay header*/
+    transition: all .5s ease-in-out;
+    visibility: visible;
+}
+
+.dialog-preview-parent.ng-enter, .dialog-preview-parent.ng-leave-active {
+    width: 0px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dialog-preview-scroll {
+    overflow-y: auto;
+}
+
+.dialog-drawer-toggle {
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    display: inline-block;
+    background-color: #424242;
+    border-radius: 50%;
+    background-size: 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url("../images/X.svg");
+    cursor: pointer;
+}
+
+.dialog-preview-buttons-parent {
+    float: right;
+}
+
+.dialog-scrollable-div {
+    width: 100%;
+    overflow-y: auto;
+    position: absolute;
+    top: 35px;
+    bottom: 60px;
+    padding-top: 15px;
+}
+
+.dialog-conversation-cell {
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+.container.dialog-preview-showing {
+    transition-property: width, display, margin-left, margin-right;
+    -webkit-transition-property: width, display, margin-left, margin-right;
+    transition-duration: .5s;
+    -webkit-transition-duration: .5s;
+    transition-timing-function: linear;
+    -webkit-transition-timing-function: linear;
+}
+
+.dialog-body-intro, .dialog-body-chatting, .dialog-body-preview {
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+}
+
+.dialog-body-intro {
+    background-color: #424242;
+}
+
+.dialog-body-chatting, .dialog-body-preview {
+    margin-top: 35px;
+    margin-bottom: 60px;
+    padding-top: 10px;
+}
+
+.dialog-body-intro .container {
+    width: 310px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.dialog-ifooter {
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 75px;
+}
+
+.dialog-welcome {
+    margin-top: 100px;
+    margin-bottom: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 28px;
+}
+@media ( min-height : 280px) {
+	.footer-intro {
+	    padding-top: 75px;
+	}
+}
+@media ( min-height : 350px) {
+	.footer-intro {
+	    padding-top: 175px;
+	}
+}
+@media ( min-height : 650px) {
+	.footer-intro {
+	    padding-top: 250px;
+	}
+}
+@media ( min-height : 768px) {
+	.footer-intro {
+	    padding-top: 275px;
+	}
+}
+@media ( min-height : 850px) {
+	.footer-intro {
+	    padding-top: 325px;
+	}
+}
+@media ( min-width : 300px) {
+    .dialog-header-chatting .dialog-header-inner, .dialog-header-preview .dialog-header-inner {
+        height: 50px;
+    }
+    .dialog-welcome {
+        width: 250px;
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+        
+    .row {
+        margin-right: -30px;
+        margin-left: -30px;
+    }
+    .dialog-line-separator {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 15px;
+        margin-right: 20px;
+        border-color: #d1d4d6;
+    }
+    .dialog-recipe-name {
+        display: inline-block;
+        font-size: 28px;
+        padding-right: 40px;
+        width: 100%;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    .dialog-watson-row, .dialog-watson-row.ng-enter.ng-enter-active {
+        background-color: transparent;
+        padding-left: 25px;
+    }
+    .dialog-user-row, .dialog-user-row.ng-enter.ng-enter-active {
+        background-color: transparent;
+        padding-right: 25px;
+    }
+    .dialog-user-row .dialog-white-bg .dialog-row-text, .dialog-user-row .dialog-row-text {
+        padding-right: 20px;
+        padding-left: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: #424242;
+        font-size: 16px;
+    }
+    .dialog-watson-row .dialog-row-text {
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .container .dialog-watson-row:before {
+        left: 0px;
+        height: 35px;
+        width: 35px;
+        top: 10px;
+        border-radius: 50%;
+    }
+    .container .dialog-user-row:after {
+        right: 0px;
+        height: 35px;
+        width: 35px;
+        top: 10px;
+        border-radius: 50%;
+    }
+    .dialog-recipe {
+        display: inline-block;
+        padding-left: 5px;
+    }
+    .dialog-recipe-links-parent {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .dialog-mct-option {
+        min-width: 70px;
+    }
+}
+
+@media ( min-width : 374px) {
+    h3 {
+        font-size: 24px;
+    }
+    .dialog-welcome {
+        width: 350px;
+        margin-top: 100px;
+        margin-bottom: 80px;
+    }
+}
+
+@media ( min-width : 425px) {
+    .dialog-mct-option {
+        min-width: 75px;
+    }
+    .dialog-body-intro .container {
+        width: 400px;
+    }
+}
+
+@media ( min-width : 470px) {
+    .dialog-welcome {
+        width: 470px;
+     }
+}
+@media ( min-width : 600px) {
+	.row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    .dialog-header-chatting .dialog-header-inner, .dialog-header-preview .dialog-header-inner {
+        height: 60px;
+    }
+        
+    .dialog-line-separator {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 75px;
+        margin-right: 75px;
+        border-color: #d1d4d6;
+    }
+    .dialog-body-intro .container {
+        width: 75%;
+    }
+    .container {
+        margin-right: auto;
+        margin-left: auto;
+        width: 550px;
+    }
+    .container .dialog-user-row:after {
+        height: 55px;
+        width: 55px;
+        top: 0px;
+    }
+     .container .dialog-watson-row:before {
+        height: 55px;
+        width: 55px;
+        top: 0px;
+    }
+    .dialog-user-row .dialog-white-bg .dialog-row-text, .dialog-user-row .dialog-row-text {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .dialog-watson-row .dialog-row-text {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .dialog-watson-row, .dialog-watson-row.ng-enter.ng-enter-active {
+        padding-left: 75px;
+    }
+    .dialog-user-row, .dialog-user-row.ng-enter.ng-enter-active {
+        padding-right: 75px;
+    }
+}
+
+@media ( min-width : 768px) {
+    .dialog-recipe-links-parent {
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+    .dialog-form-group-intro {
+        width: 532px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .dialog-body-running {
+        background: none;
+    }
+    .dialog-body-chatting, .dialog-body-preview {
+        font-size: 14px;
+    }
+    .container {
+        margin-right: auto;
+        margin-left: auto;
+        width: 600px;
+    }
+    .dialog-body-preview .container {
+        margin-left: 15px;
+        width: 385px;
+    }
+    .navbar {
+        height: 50px;
+    }
+    .dialog-scrollable-div {
+        top: 50px;
+    }
+    .form-group .dialog-form-input {
+        height: 55px;
+        border-top: 0px;
+        border-right: 0px;
+        border-left: 0px;
+        border-bottom: 1px solid;
+    }
+    .dialog-button {
+        height: 55px;
+    }
+    .dialog-small-screen-placeholder-intro {
+        display: none;
+    }
+    .dialog-intro-text-intro {
+        margin-bottom: 40px;
+    }
+    .dialog-body-intro .container {
+        width: 75%;
+    }
+    .dialog-preview-parent {
+        width: 350px;
+        top: 60px;
+    }
+    .dialog-navbar-img {
+        background-size: auto 18px;
+    }
+    .dialog-recipe {
+        display: inline-block;
+        text-align: left;
+    }
+    .dialog-recipe-link {
+        width: inherit;
+    }
+    .dialog-placeholder-intro {
+        display: none;
+    }
+}
+
+@media ( min-width : 880px) {
+    .dialog-preview-parent {
+        width: 450px;
+    }
+}
+/*
+ Change from square avatar background to circular background
+ */
+@media ( min-width : 992px) {
+    .dialog-body-preview .container {
+        width: 455px;
+        margin-left: 185px;
+        margin-right: auto;
+    }
+    .container {
+        width: 525px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .dialog-watson-row, .dialog-watson-row.ng-enter.ng-enter-active {
+        border-right-width: 75px;
+        background-color: transparent;
+    }
+    .dialog-user-row, .dialog-user-row.ng-enter.ng-enter-active {
+        border-left-width: 75px;
+        background-color: transparent;
+    }
+    .container .dialog-watson-row:before {
+        left: 0px;
+        height: 55px;
+        border-radius: 50%;
+    }
+    .container .dialog-user-row:after {
+        right: 0px;
+        height: 55px;
+        border-radius: 50%;
+    }
+    .footer-chatting .dialog-input-table, .footer-preview .dialog-input-table {
+        margin-left: 20px;
+        border-right: solid #FFFFFF 40px;
+    }
+    .dialog-body-intro .container {
+        width: 835px;
+    }
+    .dialog-preview-parent {
+        top: 60px;
+        width: 350px;
+    }
+    .container .form-group {
+        padding-right: 75px;
+        padding-left: 75px;
+    }
+    .dialog-recipe-link {
+        color: #424242;
+        background-color: #FFFFFF;
+    }
+    .dialog-user-row .dialog-white-bg .dialog-row-text {
+        padding-right: 0px;
+    }
+}
+
+@media ( min-width : 1100px) {
+    .dialog-preview-parent {
+        width: 450px;
+    }
+}
+
+@media ( min-width : 1200px) {
+    .dialog-body-intro .container {
+        width: 880px;
+    }
+    .dialog-body-preview .container {
+        width: 550px;
+        margin-left: 200px;
+    }
+    .container {
+        width: 650px;
+    }
+    .dialog-preview-parent {
+        width: 450px;
+    }
+}
+
+@media ( min-width : 1300px) {
+    .dialog-preview-parent {
+        width: 550px;
+    }
+}
+
+@media ( min-width : 1530px) {
+    .dialog-body-preview .container {
+        width: 640px;
+        margin-left: 300px;
+    }
+    .dialog-preview-parent {
+        width: 600px;
+    }
+}
+
+@media ( min-width : 1700px) {
+    .dialog-preview-parent {
+        width: 750px;
+    }
+}

@@ -1,0 +1,13 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: watson-dinner
+  host: watson-dinner
+  disk_quota: 1024M
+  services:
+  - watson-dinner-natural_language_classifier
+  - watson-dinner-dialog
+  - watson-dinner-text_to_speech
+  command: npm start

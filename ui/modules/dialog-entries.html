@@ -1,0 +1,47 @@
+<section class="dialog-response dialog-response-type-{{dialogCtrl.responseType}}">
+    <div id="dialog-cell" class="dialog-conversation-cell">
+        <div id="conversationParent" class="dialog-entries col-xs-12">
+            <!-- Actual conversation between user and system -->
+            <div ng-animate-children class="dialog-entry row" ng-repeat="entry in dialogCtrl.conversation">
+                <!--Display user entered text -->
+                <div ng-if="entry.message" class="dialog-user-row">
+                    <div class="dialog-segment-bkg">
+                        <span class="dialog-row-text">{{entry.message}}</span> 
+                    </div>
+                </div>
+                <!-- 
+                Display watson response using directive. The directive takes care of adding
+                animation while the server is responding, and removing animation once response
+                is received
+                -->
+                <div ng-class="!entry.responses ? 'watson-thinking' : 'no-class'">
+                    <div class="dialog-watson-row" ng-if="entry != null && entry.responses != null">
+                        <div class="dialog-segment-bkg">
+                            <span class="dialog-row-text" ng-bind-html="entry.responses "></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div ng-if="entry.options" class="dialog-user-row">
+                    <div class="dialog-segment-bkg">
+                        <!-- use the compile directive to convert text to HTML, add as child of current element -->
+                        <span class="dialog-row-text" compile="entry.options"></span>
+                    </div>
+                </div>
+                <!-- if recipes are returned, display them after the Watson response -->
+                <div ng-if="entry.recipes" class="dialog-recipe-links-parent">
+                    <a recipe class="dialog-recipe" content="recipe" ng-repeat="recipe in entry.recipes" tabindex="1" ng-keypress="keypressed($event)"></a>
+                </div>
+            </div>
+            <!-- If Watson makes a comment on the selected recipe, show it here -->
+            <!-- This div must be outside the repeat as we only want to add it to the last conversation segment -->
+            <div ng-if="dialogCtrl.selectedRecipe && dialogCtrl.selectedRecipe.commentary" class="dialog-entry row">
+                <div class="dialog-watson-row">
+                    <div class="dialog-segment-bkg">
+                        <span class="dialog-row-text" ng-bind-html="dialogCtrl.selectedRecipe.commentary"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
